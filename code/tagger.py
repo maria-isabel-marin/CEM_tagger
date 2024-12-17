@@ -85,6 +85,13 @@ class CEMTaggerApp:
         self.btn_ayuda = tk.Button(button_frame, text="Ayuda", command=self.ayuda, borderwidth=1, relief="raised", width=35, height=2, font=("Arial", 16), bg="#B0C4DE", fg="white")
         self.btn_ayuda.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
+        # Crear boton para etiquetar conectores
+        self.tag_sentences_button = tk.Button(button_frame, text="Etiquetado de Conectores \n logico-temporales", command=self.tag_connectors, borderwidth=1, relief="raised", width=35, height=2, font=("Arial", 16), bg="#20B2AA", fg="white")
+        self.tag_sentences_button.grid(row=2, column=1, columnspan=2, padx=10, pady=5, sticky="ew")
+
+    def tag_connectors(self):
+        #Despliega un mensaje de advertencia
+        messagebox.showwarning("Advertencia", "Esta función aún no está disponible. \n\n")
 
     def select_xml(self):
         """Esta función se encarga de abrir un cuadro de diálogo para seleccionar un archivo XML y mostrar su metadata"""
@@ -123,7 +130,7 @@ class CEMTaggerApp:
                     "Mini cuento": "Introducción (planteamiento de la situación), desarrollo (acción y conflicto), clímax (punto culminante de la historia), y desenlace (resolución del conflicto).",
                     "Columna de opinión": "Título, introducción (presentación del tema y tesis), desarrollo (argumentación y exposición de ideas), y conclusión (resumen y cierre).",
                     "Reseña": "Título, datos bibliográficos (autor, título de la obra, etc.), resumen de la obra, análisis crítico (opinión y valoración), y conclusión.",
-                    "Relato cotidiano": "Introducción (contextualización del evento), desarrollo (narración de hechos diarios), y desenlace (conclusión o reflexión final).",
+                    "Relato": "Introducción (contextualización del evento), desarrollo (narración de hechos diarios), y desenlace (conclusión o reflexión final).",
                     "Teatro":"Actos y escenas, acotaciones (indicaciones sobre el escenario, acciones y gestos), diálogos de los personajes, y en algunos casos, prólogo y epílogo.",
                     "Mito": "Introducción (contexto y personajes), desarrollo (narración de hechos y eventos sobrenaturales), clímax, y desenlace (consecuencias de los eventos).",
                     "Biografía": "Introducción (datos generales del personaje), desarrollo (narración de eventos importantes en la vida del personaje), y conclusión (logros y legado).",
@@ -880,7 +887,7 @@ class CEMTaggerApp:
         hablante = ["Enunciativas  afirmativas - (OS_AH_EA)","Enunciativas  negativas - (OS_AH_EN)","Interrogativas directas totales con sentido literal - (OS_AH_IDTSL)","Interrogativas directas parciales con sentido literal - (OS_AH_IDPSL)",
                     "Interrogativas disyuntivas - (OS_AH_ID)","Estructura interrogativa con sujeto antepuesto - (OS_AH_ISA)","Interrogativas precedidas de tópico - (OS_AH_IPT)","Exclamativas - (OS_AH_Exc)","Exhortativas-Imperativas - (OS_AH_Exh)","Dubitativas con indicativo - (OS_AH_DI)",
                     "Dubitativas con subjuntivo - (OS_AH_DS)"]
-        predicado = ["Impersonales con el verbo 'haber' - (OS_NP_IVH)","Copulativas - (OS_NP_C)","Atributivas - (OS_NP_A)","Transitivas - (OS_NP_T)","Intransitivas - (OS_NP_I)","Reflexivas - (OS_NP_R)","Impersonales con el verbo 'haber' - (OS_NP_IVH)","Pasivas perifrásticas - (OS_NP_PP)"]
+        predicado = ["Impersonales con el verbo 'haber' - (OS_NP_IVH)","Copulativas - (OS_NP_C)","Atributivas - (OS_NP_A)","Transitivas - (OS_NP_T)","Intransitivas - (OS_NP_I)","Reflexivas - (OS_NP_R)","Pasivas perifrásticas - (OS_NP_PP)"]
         frase_enunciado = ["Frase - (Frase)","Enunciado - (enun)"]
 
         # Hablante
@@ -1170,11 +1177,163 @@ class CEMTaggerApp:
         self.text_identificadores.insert(tk.END, self.identificador + " Sub, ")
 
         return 1
+    
+    ##Segunda parte: Etiquetado de conectores logico-temporales
+
+    # def extraer_tokens(self):
+    #     # Ruta del archivo JSON
+    #     path = self.file_path_json
+        
+    #     # Lista para almacenar las palabras y sus identificadores
+    #     tokens_list = []
+
+    #     # Abrir el archivo JSON
+    #     with open(path, "r") as read_file:
+    #         data = json.load(read_file)
+
+    #     # Recorrer los párrafos
+    #     for paragraph in data["document"]["paragraph"]:
+    #         # Si la oración está en formato de diccionario (una sola oración)
+    #         if isinstance(paragraph["sentence"], dict):
+    #             sentence = paragraph["sentence"]
+    #             # Si el token es un solo diccionario
+    #             if isinstance(sentence["token"], dict):
+    #                 token = sentence["token"]
+    #                 tokens_list.append(f"{token['@form']} - (id = {token['@id']})")
+    #             # Si el token es una lista de diccionarios
+    #             elif isinstance(sentence["token"], list):
+    #                 for token in sentence["token"]:
+    #                     tokens_list.append(f"{token['@form']} - (id = {token['@id']})")
+    #         # Si la oración es una lista de oraciones
+    #         elif isinstance(paragraph["sentence"], list):
+    #             for sentence in paragraph["sentence"]:
+    #                 # Si el token es un solo diccionario
+    #                 if isinstance(sentence["token"], dict):
+    #                     token = sentence["token"]
+    #                     tokens_list.append(f"{token['@form']} - (id = {token['@id']})")
+    #                 # Si el token es una lista de diccionarios
+    #                 elif isinstance(sentence["token"], list):
+    #                     for token in sentence["token"]:
+    #                         tokens_list.append(f"{token['@form']} - (id = {token['@id']})")
+
+    #     return tokens_list
 
 
+
+    # def tag_connectors(self):
+    #     #Pedir al usuario que seleccione un archivo json
+    #     self.file_path_json = filedialog.askopenfilename(title="Seleccionar archivo JSON", filetypes=[("JSON files", "*.json")])
+
+    #     #Si no se selecciona un archivo, se muestra un mensaje de advertencia
+    #     if not self.file_path_json:
+    #         messagebox.showwarning("Archivo No Seleccionado", "Por favor, seleccione un archivo JSON antes de etiquetar.")
+    #         return
+        
+    #     #Abrir el archivo json
+    #     with open(self.file_path_json, "r") as read_file:
+    #         data = json.load(read_file)
+    #         self.data = data
+
+    #     titulo = data["document"]["metadata"]["title"]
+    #     id_documento = data["document"]["metadata"]["number"]["@id_doc"]
+    #     nivel = data["document"]["metadata"]["level"]
+    #     género_textual = data["document"]["metadata"]["textual_genre"]["@type"] + ", "+ data["document"]["metadata"]["textual_genre"]["@subtype"]
+    #     responsable = data["document"]["metadata"]["responsable"]
+
+
+    #     #Crear la ventana de etiquetado de conectores
+    #     self.tagging_window_connectors = tk.Toplevel(self.root)
+    #     self.tagging_window_connectors.title("Etiquetado de Conectores Lógico-Temporales")
+
+    #     #Configurar la ventana para adaptarse al contenido
+    #     self.tagging_window_connectors.columnconfigure(0, weight=1)
+    #     self.tagging_window_connectors.columnconfigure(1, weight=1)
+    #     self.tagging_window_connectors.columnconfigure(2, weight=1)
+    #     self.tagging_window_connectors.columnconfigure(3, weight=1)
+    #     self.tagging_window_connectors.columnconfigure(4, weight=1)
+
+
+    #     self.tagging_window_connectors.rowconfigure([0, 1,2,3,4,5], weight=1)
+
+    #     #Metadata
+    #     metadata_frame = tk.Frame(self.tagging_window_connectors)
+    #     metadata_frame.grid(row=0, column=0, columnspan=5, padx=10, pady=10, sticky="ew")
+    #     metadata_frame.columnconfigure(1, weight=1)
+
+    #     #Crear campos para mostrar metadata
+    #     self.metadata_fields = {}
+    #     metadata_labels = {
+    #         "Título": "title",
+    #         "ID del Documento": "number",
+    #         "Nivel": "level",
+    #         "Género Textual": "textual_genre",
+    #         "Etiquetado por": "responsable",
+    #     }
+
+    #     for row, (label, field) in enumerate(metadata_labels.items()):
+    #         # Etiqueta
+    #         tk.Label(metadata_frame, text=f"{label}:", font=("Arial", 8)).grid(row=row, column=0, sticky="w", padx=5, pady=2)
+    #         # Campo de entrada
+    #         entry = tk.Entry(metadata_frame, font=("Arial", 8))
+    #         entry.grid(row=row, column=1, padx=5, pady=1, sticky="ew")
+    #         entry.config(state=tk.DISABLED)
+    #         self.metadata_fields[field] = entry
+
+    #     #Agregar título al campo
+    #     self.update_metadata_field("title", titulo)  
+    #     self.update_metadata_field("number", id_documento)
+    #     self.update_metadata_field("level", nivel)
+    #     self.update_metadata_field("textual_genre", género_textual)
+    #     self.update_metadata_field("responsable", responsable)
+
+    #     texto = self.extraer_tokens()
+    #     # Crear un canvas para hacer el frame scrolleable
+    #     canvas = tk.Canvas(self.tagging_window_connectors)
+    #     canvas.grid(row=1, column=1, columnspan=4, padx=10, pady=10, sticky="ew")
+
+    #     # Agregar un scrollbar
+    #     scrollbar = tk.Scrollbar(self.tagging_window_connectors, orient="vertical", command=canvas.yview)
+    #     scrollbar.grid(row=1, column=5, sticky="nsew")
+
+    #     # Configurar el canvas con el scrollbar
+    #     canvas.configure(yscrollcommand=scrollbar.set)
+    #     canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+    #     # Crear un frame dentro del canvas
+    #     button_frame = tk.Frame(canvas)
+    #     canvas.create_window((0, 0), window=button_frame, anchor="nw")
+    #     n=0
+    #     m=0
+    #     # Agregar botones al frame por cada elemento de texto
+        for idx, token in enumerate(texto):
+            
+            btn = tk.Button(button_frame, text=token, font=("Arial", 10), command=lambda t=token: self.seleccionar_token(t),bg="#B0E0E6")
+            btn.grid(row=m, column=n, padx=5, pady=5, sticky="ew")
+            n+=1
+            if n==3:
+                n=0
+                m+=1
+
+        # Configurar el frame de botones para que se ajuste al canvas
+        button_frame.update_idletasks()
+        canvas.config(scrollregion=canvas.bbox("all"))
+
+
+    def seleccionar_token(self, token):
+        # Aquí puedes definir lo que sucede cuando se selecciona un token
+        print(f"Token seleccionado: {token}")        
+
+
+
+
+        
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = CEMTaggerApp(root)
     root.mainloop()
+
+
+
+
