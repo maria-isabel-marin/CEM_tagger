@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "tipo_texto": "Argumentativo",
+    "archivo_origen": "/home/ospina/General/SIMULTEX/PrototipoEtiquetadoReferentes/simultext_modular/data/prueba.xml"
+  },
+  "etiquetas_oraciones": {
+    "s1": [
+      "OS_AH_ISA",
+      "OS_NP_T"
+    ],
+    "s2": [
+      "OS_NP_A"
+    ]
+  }
+}
