@@ -1,0 +1,1410 @@
+<document>
+
+<metadata>
+  <title>Chile necesita m&#225;s ciencia y m&#225;s cient&#237;ficos </title>
+  <author>Max Ba&#241;ados</author>
+  <publication_date>Sin informacion</publication_date>
+  <publication_name>Sin informacion</publication_name>
+  <source>https://www.diariodepuertomontt.cl/noticia/opinion/2018/04/chile-necesita-mas-ciencia-y-mas-cientificos  </source>
+  <query_date>Sin informacion</query_date>
+  <number id_doc="015" />
+  <level>B1</level>
+  <textual_genre type="Argumentativo" subtype="Columna de opini&#243;n" />
+  <country name="CHL" />
+  <responsable>Juan Ospina/Yokohama Lussio</responsable>
+</metadata>
+
+<document>
+  <wordcount>253</wordcount>
+  <cputime>0.193491</cputime>
+  <paragraph id="1">
+    <sentence id="1">
+      <token begin="0" ctag="CS" end="4" form="pues" id="t1.1" lemma="pues" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="pues" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="RG" lemma="pues" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="4" ctag="Fc" end="5" form="," id="t1.2" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="6" ctag="RG" end="15" form="pues_bien" id="t1.3" lemma="pues_bien" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="pues_bien" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="15" ctag="Fc" end="16" form="," id="t1.4" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="17" ctag="VMP" end="22" form="dicho" gen="masculine" id="t1.5" lemma="decir" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="decir" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="dicho" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="23" ctag="PD" end="27" form="esto" id="t1.6" lemma="este" num="singular" pos="pronoun" tag="PD00S00" type="demonstrative">
+        <morpho>
+          <analysis ctag="PD" lemma="este" num="singular" pos="pronoun" selected="1" tag="PD00S00" type="demonstrative"/>
+        </morpho>
+      </token>
+      <token begin="27" ctag="Fc" end="28" form="," id="t1.7" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="29" ctag="VMP" end="34" form="dicho" gen="masculine" id="t1.8" lemma="decir" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="decir" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="dicho" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="35" ctag="PD" end="38" form="eso" id="t1.9" lemma="ese" num="singular" pos="pronoun" tag="PD00S00" type="demonstrative">
+        <morpho>
+          <analysis ctag="PD" lemma="ese" num="singular" pos="pronoun" selected="1" tag="PD00S00" type="demonstrative"/>
+        </morpho>
+      </token>
+      <token begin="38" ctag="Fc" end="39" form="," id="t1.10" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="40" ctag="RG" end="43" form="así" id="t1.11" lemma="así" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="así" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="VMI" lemma="asir" mood="indicative" num="singular" person="1" pos="verb" tag="VMIS1S0" tense="past" type="main"/>
+        </morpho>
+      </token>
+      <token begin="44" ctag="DA" end="47" form="las" gen="feminine" id="t1.12" lemma="el" num="plural" pos="determiner" tag="DA0FP0" type="article">
+        <morpho>
+          <analysis ctag="DA" gen="feminine" lemma="el" num="plural" pos="determiner" selected="1" tag="DA0FP0" type="article"/>
+          <analysis case="accusative" ctag="PP" gen="feminine" lemma="lo" num="plural" person="3" pos="pronoun" tag="PP3FPA0" type="personal"/>
+          <analysis ctag="NC" gen="masculine" lemma="la" num="plural" pos="noun" tag="NCMP000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="48" ctag="NC" end="53" form="cosas" gen="feminine" id="t1.13" lemma="cosa" num="plural" pos="noun" tag="NCFP000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="cosa" num="plural" pos="noun" selected="1" tag="NCFP000" type="common"/>
+          <analysis ctag="VMS" lemma="coser" mood="subjunctive" num="singular" person="2" pos="verb" tag="VMSP2S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="53" ctag="Fc" end="54" form="," id="t1.14" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="55" ctag="SP" end="58" form="por" id="t1.15" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="59" ctag="AQ" end="65" form="cierto" gen="masculine" id="t1.16" lemma="cierto" num="singular" pos="adjective" tag="AQ0MS00" type="qualificative">
+        <morpho>
+          <analysis ctag="AQ" gen="masculine" lemma="cierto" num="singular" pos="adjective" selected="1" tag="AQ0MS00" type="qualificative"/>
+          <analysis ctag="DI" gen="masculine" lemma="cierto" num="singular" pos="determiner" tag="DI0MS0" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="65" ctag="Fc" end="66" form="," id="t1.17" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="67" ctag="SP" end="68" form="a" id="t1.18" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="a" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="69" ctag="NC" end="78" form="propósito" gen="masculine" id="t1.19" lemma="propósito" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="propósito" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="78" ctag="Fc" end="79" form="," id="t1.20" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="80" ctag="SP" end="81" form="a" id="t1.21" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="a" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="82" ctag="DI" end="86" form="todo" gen="masculine" id="t1.22" lemma="todo" num="singular" pos="determiner" tag="DI0MS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="masculine" lemma="todo" num="singular" pos="determiner" selected="1" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="PI" gen="masculine" lemma="todo" num="singular" pos="pronoun" tag="PI0MS00" type="indefinite"/>
+          <analysis ctag="NC" gen="masculine" lemma="todo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="RG" lemma="todo" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="87" ctag="PD" end="91" form="esto" id="t1.23" lemma="este" num="singular" pos="pronoun" tag="PD00S00" type="demonstrative">
+        <morpho>
+          <analysis ctag="PD" lemma="este" num="singular" pos="pronoun" selected="1" tag="PD00S00" type="demonstrative"/>
+        </morpho>
+      </token>
+      <token begin="91" ctag="Fc" end="92" form="," id="t1.24" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="93" ctag="SP" end="95" form="en" id="t1.25" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="96" ctag="AO" end="102" form="primer" gen="masculine" id="t1.26" lemma="1" num="singular" pos="adjective" tag="AO0MS00" type="ordinal">
+        <morpho>
+          <analysis ctag="AO" gen="masculine" lemma="1" num="singular" pos="adjective" selected="1" tag="AO0MS00" type="ordinal"/>
+        </morpho>
+      </token>
+      <token begin="103" ctag="NC" end="108" form="lugar" gen="masculine" id="t1.27" lemma="lugar" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="lugar" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="108" ctag="Fc" end="109" form="," id="t1.28" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="110" ctag="SP" end="112" form="en" id="t1.29" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="113" ctag="AO" end="120" form="segundo" gen="masculine" id="t1.30" lemma="2" num="singular" pos="adjective" tag="AO0MS00" type="ordinal">
+        <morpho>
+          <analysis ctag="AO" gen="masculine" lemma="2" num="singular" pos="adjective" selected="1" tag="AO0MS00" type="ordinal"/>
+          <analysis ctag="NC" gen="masculine" lemma="segundo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="VMI" lemma="segundar" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="121" ctag="NC" end="126" form="lugar" gen="masculine" id="t1.31" lemma="lugar" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="lugar" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="126" ctag="Fc" end="127" form="," id="t1.32" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="128" ctag="SP" end="131" form="por" id="t1.33" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="132" ctag="DI" end="135" form="una" gen="feminine" id="t1.34" lemma="uno" num="singular" pos="determiner" tag="DI0FS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="feminine" lemma="uno" num="singular" pos="determiner" selected="1" tag="DI0FS0" type="indefinite"/>
+          <analysis ctag="PI" gen="feminine" lemma="uno" num="singular" pos="pronoun" tag="PI0FS00" type="indefinite"/>
+          <analysis ctag="Z" lemma="1" pos="number" tag="Z"/>
+          <analysis ctag="VMM" lemma="unir" mood="imperative" num="singular" person="3" pos="verb" tag="VMM03S0" type="main"/>
+          <analysis ctag="VMS" lemma="unir" mood="subjunctive" num="singular" person="3" pos="verb" tag="VMSP3S0" tense="present" type="main"/>
+          <analysis ctag="VMS" lemma="unir" mood="subjunctive" num="singular" person="1" pos="verb" tag="VMSP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="136" ctag="NC" end="141" form="parte" gen="common" id="t1.35" lemma="parte" num="singular" pos="noun" tag="NCCS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="common" lemma="parte" num="singular" pos="noun" selected="1" tag="NCCS000" type="common"/>
+          <analysis ctag="VMI" lemma="partir" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="partir" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="141" ctag="Fc" end="142" form="," id="t1.36" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="143" ctag="SP" end="146" form="por" id="t1.37" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="147" ctag="DI" end="151" form="otra" gen="feminine" id="t1.38" lemma="otro" num="singular" pos="determiner" tag="DI0FS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="feminine" lemma="otro" num="singular" pos="determiner" selected="1" tag="DI0FS0" type="indefinite"/>
+          <analysis ctag="PI" gen="feminine" lemma="otro" num="singular" pos="pronoun" tag="PI0FS00" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="152" ctag="NC" end="157" form="parte" gen="common" id="t1.39" lemma="parte" num="singular" pos="noun" tag="NCCS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="common" lemma="parte" num="singular" pos="noun" selected="1" tag="NCCS000" type="common"/>
+          <analysis ctag="VMI" lemma="partir" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="partir" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="157" ctag="Fc" end="158" form="," id="t1.40" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="159" ctag="SP" end="161" form="de" id="t1.41" lemma="de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="de" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="162" ctag="DI" end="164" form="un" gen="masculine" id="t1.42" lemma="uno" num="singular" pos="determiner" tag="DI0MS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="masculine" lemma="uno" num="singular" pos="determiner" selected="1" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="Z" lemma="1" pos="number" tag="Z"/>
+        </morpho>
+      </token>
+      <token begin="165" ctag="NC" end="169" form="lado" gen="masculine" id="t1.43" lemma="lado" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="lado" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="169" ctag="Fc" end="170" form="," id="t1.44" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="171" ctag="SP" end="173" form="de" id="t1.45" lemma="de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="de" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="174" ctag="DI" end="178" form="otro" gen="masculine" id="t1.46" lemma="otro" num="singular" pos="determiner" tag="DI0MS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="masculine" lemma="otro" num="singular" pos="determiner" selected="1" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="PI" gen="masculine" lemma="otro" num="singular" pos="pronoun" tag="PI0MS00" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="179" ctag="NC" end="183" form="lado" gen="masculine" id="t1.47" lemma="lado" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="lado" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="183" ctag="Fc" end="184" form="," id="t1.48" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="185" ctag="SP" end="189" form="para" id="t1.49" lemma="para" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="para" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="VMI" lemma="parar" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="parar" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+          <analysis ctag="VMM" lemma="parir" mood="imperative" num="singular" person="3" pos="verb" tag="VMM03S0" type="main"/>
+          <analysis ctag="VMS" lemma="parir" mood="subjunctive" num="singular" person="3" pos="verb" tag="VMSP3S0" tense="present" type="main"/>
+          <analysis ctag="VMS" lemma="parir" mood="subjunctive" num="singular" person="1" pos="verb" tag="VMSP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="190" ctag="VMN" end="197" form="empezar" id="t1.50" lemma="empezar" mood="infinitive" pos="verb" tag="VMN0000" type="main">
+        <morpho>
+          <analysis ctag="VMN" lemma="empezar" mood="infinitive" pos="verb" selected="1" tag="VMN0000" type="main"/>
+        </morpho>
+      </token>
+      <token begin="197" ctag="Fc" end="198" form="," id="t1.51" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="199" ctag="RG" end="209" form="finalmente" id="t1.52" lemma="finalmente" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="finalmente" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="209" ctag="Fc" end="210" form="," id="t1.53" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="211" ctag="SP" end="215" form="para" id="t1.54" lemma="para" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="para" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="VMI" lemma="parar" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="parar" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+          <analysis ctag="VMM" lemma="parir" mood="imperative" num="singular" person="3" pos="verb" tag="VMM03S0" type="main"/>
+          <analysis ctag="VMS" lemma="parir" mood="subjunctive" num="singular" person="3" pos="verb" tag="VMSP3S0" tense="present" type="main"/>
+          <analysis ctag="VMS" lemma="parir" mood="subjunctive" num="singular" person="1" pos="verb" tag="VMSP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="216" ctag="VMN" end="224" form="terminar" id="t1.55" lemma="terminar" mood="infinitive" pos="verb" tag="VMN0000" type="main">
+        <morpho>
+          <analysis ctag="VMN" lemma="terminar" mood="infinitive" pos="verb" selected="1" tag="VMN0000" type="main"/>
+        </morpho>
+      </token>
+      <token begin="224" ctag="Fc" end="225" form="," id="t1.56" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="226" ctag="RG" end="238" form="primeramente" id="t1.57" lemma="primeramente" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="primeramente" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="238" ctag="Fc" end="239" form="," id="t1.58" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="240" ctag="NC" end="252" form="segundamente" gen="feminine" id="t1.59" lemma="segunda_mente" num="singular" pos="noun" tag="NCFS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="segunda_mente" num="singular" pos="noun" selected="1" tag="NCFS000" type="common"/>
+          <analysis ctag="NC" gen="common" lemma="segundar_mente" num="invariable" pos="noun" tag="NCCN000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="252" ctag="Fc" end="253" form="," id="t1.60" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="254" ctag="CS" end="262" form="mientras" id="t1.61" lemma="mientras" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="mientras" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="RG" lemma="mientras" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="262" ctag="Fc" end="263" form="," id="t1.62" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="264" ctag="CS" end="276" form="mientras_que" id="t1.63" lemma="mientras_que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="mientras_que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="276" ctag="Fc" end="277" form="," id="t1.64" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="278" ctag="CS" end="284" form="cuando" id="t1.65" lemma="cuando" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="cuando" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="PR" lemma="cuando" pos="pronoun" tag="PR00000" type="relative"/>
+        </morpho>
+      </token>
+      <token begin="284" ctag="Fc" end="285" form="," id="t1.66" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="286" ctag="SP" end="294" form="antes_de" id="t1.67" lemma="antes_de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="antes_de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="295" ctag="PR" end="298" form="que" gen="common" id="t1.68" lemma="que" num="invariable" pos="pronoun" tag="PR0CN00" type="relative">
+        <morpho>
+          <analysis ctag="PR" gen="common" lemma="que" num="invariable" pos="pronoun" selected="1" tag="PR0CN00" type="relative"/>
+          <analysis ctag="CS" lemma="que" pos="conjunction" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="298" ctag="Fc" end="299" form="," id="t1.69" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="300" ctag="SP" end="308" form="antes_de" id="t1.70" lemma="antes_de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="antes_de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="308" ctag="Fc" end="309" form="," id="t1.71" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="310" ctag="RG" end="317" form="después" id="t1.72" lemma="después" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="después" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="318" ctag="CS" end="321" form="que" id="t1.73" lemma="que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="PR" gen="common" lemma="que" num="invariable" pos="pronoun" tag="PR0CN00" type="relative"/>
+          <analysis ctag="CS" lemma="que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="321" ctag="Fc" end="322" form="," id="t1.74" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="323" ctag="RG" end="326" form="aún" id="t1.75" lemma="aun" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="aun" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="327" ctag="RN" end="329" form="no" id="t1.76" lemma="no" pos="adverb" tag="RN" type="negative">
+        <morpho>
+          <analysis ctag="RN" lemma="no" pos="adverb" selected="1" tag="RN" type="negative"/>
+          <analysis ctag="NC" gen="masculine" lemma="no" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="329" ctag="Fc" end="330" form="," id="t1.77" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="331" ctag="CS" end="340" form="luego_que" id="t1.78" lemma="luego_que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="luego_que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="340" ctag="Fc" end="341" form="," id="t1.79" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="342" ctag="SP" end="345" form="por" id="t1.80" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="346" ctag="AQ" end="352" form="cierto" gen="masculine" id="t1.81" lemma="cierto" num="singular" pos="adjective" tag="AQ0MS00" type="qualificative">
+        <morpho>
+          <analysis ctag="AQ" gen="masculine" lemma="cierto" num="singular" pos="adjective" selected="1" tag="AQ0MS00" type="qualificative"/>
+          <analysis ctag="DI" gen="masculine" lemma="cierto" num="singular" pos="determiner" tag="DI0MS0" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="352" ctag="Fc" end="353" form="," id="t1.82" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="354" ctag="SP" end="355" form="a" id="t1.83" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="a" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="356" ctag="NC" end="365" form="propósito" gen="masculine" id="t1.84" lemma="propósito" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="propósito" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="365" ctag="Fc" end="366" form="," id="t1.85" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="367" ctag="SP" end="368" form="a" id="t1.86" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="a" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="369" ctag="DI" end="373" form="todo" gen="masculine" id="t1.87" lemma="todo" num="singular" pos="determiner" tag="DI0MS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="masculine" lemma="todo" num="singular" pos="determiner" selected="1" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="PI" gen="masculine" lemma="todo" num="singular" pos="pronoun" tag="PI0MS00" type="indefinite"/>
+          <analysis ctag="NC" gen="masculine" lemma="todo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="RG" lemma="todo" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="374" ctag="PD" end="378" form="esto" id="t1.88" lemma="este" num="singular" pos="pronoun" tag="PD00S00" type="demonstrative">
+        <morpho>
+          <analysis ctag="PD" lemma="este" num="singular" pos="pronoun" selected="1" tag="PD00S00" type="demonstrative"/>
+        </morpho>
+      </token>
+      <token begin="378" ctag="Fc" end="379" form="," id="t1.89" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="380" ctag="RG" end="386" form="además" id="t1.90" lemma="además" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="además" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="386" ctag="Fc" end="387" form="," id="t1.91" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="388" ctag="RG" end="394" form="encima" id="t1.92" lemma="encima" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="encima" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="VMI" lemma="encimar" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="encimar" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="394" ctag="Fc" end="395" form="," id="t1.93" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="396" ctag="RG" end="402" form="aparte" id="t1.94" lemma="aparte" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="aparte" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="NC" gen="masculine" lemma="aparte" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="VMS" lemma="apartar" mood="subjunctive" num="singular" person="3" pos="verb" tag="VMSP3S0" tense="present" type="main"/>
+          <analysis ctag="VMS" lemma="apartar" mood="subjunctive" num="singular" person="1" pos="verb" tag="VMSP1S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="apartar" mood="imperative" num="singular" person="3" pos="verb" tag="VMM03S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="402" ctag="Fc" end="403" form="," id="t1.95" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="404" ctag="RG" end="411" form="incluso" id="t1.96" lemma="incluso" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="incluso" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="AQ" gen="masculine" lemma="incluso" num="singular" pos="adjective" tag="AQ0MS00" type="qualificative"/>
+          <analysis ctag="CS" lemma="incluso" pos="conjunction" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="411" ctag="Fc" end="412" form="," id="t1.97" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="413" ctag="SP" end="416" form="por" id="t1.98" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="417" ctag="RG" end="422" form="tanto" id="t1.99" lemma="tanto" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="tanto" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="DI" gen="masculine" lemma="tanto" num="singular" pos="determiner" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="NC" gen="masculine" lemma="tanto" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="PI" gen="masculine" lemma="tanto" num="singular" pos="pronoun" tag="PI0MS00" type="indefinite"/>
+          <analysis ctag="CC" lemma="tanto" pos="conjunction" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="422" ctag="Fc" end="423" form="," id="t1.100" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="424" ctag="RG" end="440" form="por_consiguiente" id="t1.101" lemma="por_consiguiente" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="por_consiguiente" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="440" ctag="Fc" end="441" form="," id="t1.102" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="442" ctag="RG" end="450" form="por_ende" id="t1.103" lemma="por_ende" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="por_ende" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="450" ctag="Fc" end="451" form="," id="t1.104" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="452" ctag="RG" end="467" form="en_consecuencia" id="t1.105" lemma="en_consecuencia" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="en_consecuencia" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="467" ctag="Fc" end="468" form="," id="t1.106" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="469" ctag="SP" end="471" form="de" id="t1.107" lemma="de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="de" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="472" ctag="RG" end="475" form="ahí" id="t1.108" lemma="ahí" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="ahí" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="475" ctag="Fc" end="476" form="," id="t1.109" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="477" ctag="RG" end="485" form="entonces" id="t1.110" lemma="entonces" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="entonces" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="CS" lemma="entonces" pos="conjunction" tag="CS" type="subordinating"/>
+          <analysis ctag="I" lemma="entonces" pos="interjection" tag="I"/>
+        </morpho>
+      </token>
+      <token begin="485" ctag="Fc" end="486" form="," id="t1.111" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="487" ctag="CS" end="491" form="pues" id="t1.112" lemma="pues" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="pues" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="RG" lemma="pues" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="491" ctag="Fc" end="492" form="," id="t1.113" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="493" ctag="RG" end="496" form="así" id="t1.114" lemma="así" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="así" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="VMI" lemma="asir" mood="indicative" num="singular" person="1" pos="verb" tag="VMIS1S0" tense="past" type="main"/>
+        </morpho>
+      </token>
+      <token begin="496" ctag="Fc" end="497" form="," id="t1.115" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="498" ctag="RG" end="506" form="así_pues" id="t1.116" lemma="así_pues" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="así_pues" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="506" ctag="Fc" end="507" form="," id="t1.117" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="508" ctag="CC" end="514" form="aunque" id="t1.118" lemma="aunque" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="aunque" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="514" ctag="Fc" end="515" form="," id="t1.119" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="516" ctag="SP" end="518" form="en" id="t1.120" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="519" ctag="NC" end="525" form="cambio" gen="masculine" id="t1.121" lemma="cambio" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="cambio" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+          <analysis ctag="VMI" lemma="cambiar" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="525" ctag="Fc" end="526" form="," id="t1.122" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="527" ctag="RG" end="543" form="por_el_contrario" id="t1.123" lemma="por_el_contrario" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="por_el_contrario" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="543" ctag="Fc" end="544" form="," id="t1.124" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="545" ctag="SP" end="548" form="por" id="t1.125" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="549" ctag="SP" end="555" form="contra" id="t1.126" lemma="contra" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="contra" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="common" lemma="contra" num="singular" pos="noun" tag="NCCS000" type="common"/>
+          <analysis ctag="I" lemma="contra" pos="interjection" tag="I"/>
+          <analysis ctag="AQ" gen="common" lemma="contra" num="invariable" pos="adjective" tag="AQ0CN00" type="qualificative"/>
+        </morpho>
+      </token>
+      <token begin="555" ctag="Fc" end="556" form="," id="t1.127" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="557" ctag="RG" end="567" form="antes_bien" id="t1.128" lemma="antes_bien" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="antes_bien" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="567" ctag="Fc" end="568" form="," id="t1.129" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="569" ctag="SP" end="572" form="sin" id="t1.130" lemma="sin" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="sin" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="573" ctag="NC" end="580" form="embargo" gen="masculine" id="t1.131" lemma="embargo" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="embargo" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+          <analysis ctag="VMI" lemma="embargar" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="580" ctag="Fc" end="581" form="," id="t1.132" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="582" ctag="CC" end="593" form="no_obstante" id="t1.133" lemma="no_obstante" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="no_obstante" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="593" ctag="Fc" end="594" form="," id="t1.134" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="595" ctag="SP" end="598" form="con" id="t1.135" lemma="con" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="con" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="599" ctag="PI" end="603" form="todo" gen="masculine" id="t1.136" lemma="todo" num="singular" pos="pronoun" tag="PI0MS00" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="masculine" lemma="todo" num="singular" pos="determiner" tag="DI0MS0" type="indefinite"/>
+          <analysis ctag="PI" gen="masculine" lemma="todo" num="singular" pos="pronoun" selected="1" tag="PI0MS00" type="indefinite"/>
+          <analysis ctag="NC" gen="masculine" lemma="todo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="RG" lemma="todo" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="603" ctag="Fc" end="604" form="," id="t1.137" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="605" ctag="CC" end="610" form="o_sea" id="t1.138" lemma="o_sea" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="o_sea" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="610" ctag="Fc" end="611" form="," id="t1.139" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="612" ctag="VSI" end="614" form="es" id="t1.140" lemma="ser" mood="indicative" num="singular" person="3" pos="verb" tag="VSIP3S0" tense="present" type="semiauxiliary">
+        <morpho>
+          <analysis ctag="VSI" lemma="ser" mood="indicative" num="singular" person="3" pos="verb" selected="1" tag="VSIP3S0" tense="present" type="semiauxiliary"/>
+        </morpho>
+      </token>
+      <token begin="615" ctag="VMN" end="620" form="decir" id="t1.141" lemma="decir" mood="infinitive" pos="verb" tag="VMN0000" type="main">
+        <morpho>
+          <analysis ctag="VMN" lemma="decir" mood="infinitive" pos="verb" selected="1" tag="VMN0000" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="decir" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="620" ctag="Fc" end="621" form="," id="t1.142" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="622" ctag="PD" end="626" form="esto" id="t1.143" lemma="este" num="singular" pos="pronoun" tag="PD00S00" type="demonstrative">
+        <morpho>
+          <analysis ctag="PD" lemma="este" num="singular" pos="pronoun" selected="1" tag="PD00S00" type="demonstrative"/>
+        </morpho>
+      </token>
+      <token begin="627" ctag="VSI" end="629" form="es" id="t1.144" lemma="ser" mood="indicative" num="singular" person="3" pos="verb" tag="VSIP3S0" tense="present" type="semiauxiliary">
+        <morpho>
+          <analysis ctag="VSI" lemma="ser" mood="indicative" num="singular" person="3" pos="verb" selected="1" tag="VSIP3S0" tense="present" type="semiauxiliary"/>
+        </morpho>
+      </token>
+      <token begin="629" ctag="Fc" end="630" form="," id="t1.145" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="631" ctag="SP" end="632" form="a" id="t1.146" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="a" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="633" ctag="VMN" end="638" form="saber" id="t1.147" lemma="saber" mood="infinitive" pos="verb" tag="VMN0000" type="main">
+        <morpho>
+          <analysis ctag="VMN" lemma="saber" mood="infinitive" pos="verb" selected="1" tag="VMN0000" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="saber" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="638" ctag="Fc" end="639" form="," id="t1.148" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="640" ctag="SP" end="642" form="en" id="t1.149" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="643" ctag="DI" end="648" form="otras" gen="feminine" id="t1.150" lemma="otro" num="plural" pos="determiner" tag="DI0FP0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="feminine" lemma="otro" num="plural" pos="determiner" selected="1" tag="DI0FP0" type="indefinite"/>
+          <analysis ctag="PI" gen="feminine" lemma="otro" num="plural" pos="pronoun" tag="PI0FP00" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="649" ctag="NC" end="657" form="palabras" gen="feminine" id="t1.151" lemma="palabra" num="plural" pos="noun" tag="NCFP000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="palabra" num="plural" pos="noun" selected="1" tag="NCFP000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="657" ctag="Fc" end="658" form="," id="t1.152" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="659" ctag="CS" end="665" form="porque" id="t1.153" lemma="porque" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="porque" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="665" ctag="Fc" end="666" form="," id="t1.154" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="667" ctag="CS" end="671" form="como" id="t1.155" lemma="como" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="como" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="SP" lemma="como" pos="adposition" tag="SP" type="preposition"/>
+          <analysis ctag="PR" lemma="como" pos="pronoun" tag="PR00000" type="relative"/>
+          <analysis ctag="CC" lemma="como" pos="conjunction" tag="CC" type="coordinating"/>
+          <analysis ctag="VMI" lemma="comer" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="671" ctag="Fc" end="672" form="," id="t1.156" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="673" ctag="CS" end="681" form="dado_que" id="t1.157" lemma="dado_que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="dado_que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="681" ctag="Fc" end="682" form="," id="t1.158" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="683" ctag="VMP" end="688" form="visto" gen="masculine" id="t1.159" lemma="ver" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="ver" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+          <analysis ctag="VMI" lemma="vestir" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="689" ctag="CS" end="692" form="que" id="t1.160" lemma="que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="PR" gen="common" lemma="que" num="invariable" pos="pronoun" tag="PR0CN00" type="relative"/>
+          <analysis ctag="CS" lemma="que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="692" ctag="Fc" end="693" form="," id="t1.161" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="694" ctag="VMP" end="700" form="puesto" gen="masculine" id="t1.162" lemma="poner" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="puesto" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="VMP" gen="masculine" lemma="poner" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+        </morpho>
+      </token>
+      <token begin="701" ctag="CS" end="704" form="que" id="t1.163" lemma="que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="PR" gen="common" lemma="que" num="invariable" pos="pronoun" tag="PR0CN00" type="relative"/>
+          <analysis ctag="CS" lemma="que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="704" ctag="Fc" end="705" form="," id="t1.164" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="706" ctag="CS" end="710" form="pues" id="t1.165" lemma="pues" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="pues" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+          <analysis ctag="RG" lemma="pues" pos="adverb" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="710" ctag="Fc" end="711" form="," id="t1.166" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="712" ctag="CS" end="718" form="ya_que" id="t1.167" lemma="ya_que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="CS" lemma="ya_que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="718" ctag="Fc" end="719" form="," id="t1.168" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="720" ctag="RG" end="725" form="mejor" id="t1.169" lemma="mejor" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="AQ" gen="common" lemma="mejor" num="singular" pos="adjective" tag="AQ0CS00" type="qualificative"/>
+          <analysis ctag="RG" lemma="mejor" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="726" ctag="VMP" end="731" form="dicho" gen="masculine" id="t1.170" lemma="decir" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="decir" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="dicho" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="731" ctag="Fc" end="732" form="," id="t1.171" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="733" ctag="RG" end="738" form="mejor" id="t1.172" lemma="mejor" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="AQ" gen="common" lemma="mejor" num="singular" pos="adjective" tag="AQ0CS00" type="qualificative"/>
+          <analysis ctag="RG" lemma="mejor" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="739" ctag="RG" end="742" form="aún" id="t1.173" lemma="aun" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="aun" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="742" ctag="Fc" end="743" form="," id="t1.174" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="744" ctag="RG" end="747" form="más" id="t1.175" lemma="más" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="más" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="NC" gen="masculine" lemma="más" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="748" ctag="RG" end="752" form="bien" id="t1.176" lemma="bien" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="bien" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="NC" gen="masculine" lemma="bien" num="singular" pos="noun" tag="NCMS000" type="common"/>
+          <analysis ctag="CC" lemma="bien" pos="conjunction" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="752" ctag="Fc" end="753" form="," id="t1.177" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="754" ctag="RG" end="759" form="antes" id="t1.178" lemma="antes" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="antes" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="759" ctag="Fc" end="760" form="," id="t1.179" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="761" ctag="RG" end="766" form="antes" id="t1.180" lemma="antes" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="antes" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="767" ctag="CS" end="770" form="que" id="t1.181" lemma="que" pos="conjunction" tag="CS" type="subordinating">
+        <morpho>
+          <analysis ctag="PR" gen="common" lemma="que" num="invariable" pos="pronoun" tag="PR0CN00" type="relative"/>
+          <analysis ctag="CS" lemma="que" pos="conjunction" selected="1" tag="CS" type="subordinating"/>
+        </morpho>
+      </token>
+      <token begin="770" ctag="Fc" end="771" form="," id="t1.182" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="772" ctag="SP" end="774" form="en" id="t1.183" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="775" ctag="DI" end="784" form="cualquier" gen="common" id="t1.184" lemma="cualquiera" num="singular" pos="determiner" tag="DI0CS0" type="indefinite">
+        <morpho>
+          <analysis ctag="DI" gen="common" lemma="cualquiera" num="singular" pos="determiner" selected="1" tag="DI0CS0" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="785" ctag="NC" end="789" form="caso" gen="masculine" id="t1.185" lemma="caso" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="caso" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+          <analysis ctag="VMI" lemma="casar" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="789" ctag="Fc" end="790" form="," id="t1.186" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="791" ctag="RG" end="803" form="en_todo_caso" id="t1.187" lemma="en_todo_caso" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="en_todo_caso" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="803" ctag="Fc" end="804" form="," id="t1.188" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="805" ctag="RG" end="819" form="de_todos_modos" id="t1.189" lemma="de_todos_modos" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="de_todos_modos" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="819" ctag="Fc" end="820" form="," id="t1.190" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="821" ctag="SP" end="823" form="en" id="t1.191" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="824" ctag="NC" end="828" form="suma" gen="feminine" id="t1.192" lemma="suma" num="singular" pos="noun" tag="NCFS000" type="common">
+        <morpho>
+          <analysis ctag="VMI" lemma="sumar" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="NC" gen="feminine" lemma="suma" num="singular" pos="noun" selected="1" tag="NCFS000" type="common"/>
+          <analysis ctag="AQ" gen="feminine" lemma="sumo" num="singular" pos="adjective" tag="AQ0FS00" type="qualificative"/>
+          <analysis ctag="VMS" lemma="sumir" mood="subjunctive" num="singular" person="3" pos="verb" tag="VMSP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="sumar" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+          <analysis ctag="VMS" lemma="sumir" mood="subjunctive" num="singular" person="1" pos="verb" tag="VMSP1S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="sumir" mood="imperative" num="singular" person="3" pos="verb" tag="VMM03S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="828" ctag="Fc" end="829" form="," id="t1.193" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="830" ctag="SP" end="832" form="en" id="t1.194" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="833" ctag="NC" end="843" form="conclusión" gen="feminine" id="t1.195" lemma="conclusión" num="singular" pos="noun" tag="NCFS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="conclusión" num="singular" pos="noun" selected="1" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="843" ctag="Fc" end="844" form="," id="t1.196" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="845" ctag="SP" end="847" form="en" id="t1.197" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="848" ctag="AQ" end="858" form="definitiva" gen="feminine" id="t1.198" lemma="definitivo" num="singular" pos="adjective" tag="AQ0FS00" type="qualificative">
+        <morpho>
+          <analysis ctag="AQ" gen="feminine" lemma="definitivo" num="singular" pos="adjective" selected="1" tag="AQ0FS00" type="qualificative"/>
+        </morpho>
+      </token>
+      <token begin="858" ctag="Fc" end="859" form="," id="t1.199" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="860" ctag="SP" end="862" form="en" id="t1.200" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="863" ctag="NC" end="866" form="fin" gen="masculine" id="t1.201" lemma="fin" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="fin" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="866" ctag="Fc" end="867" form="," id="t1.202" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="868" ctag="RG" end="884" form="a_el_fin_y_a_el_cabo" id="t1.203" lemma="al_fin_y_al_cabo" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="al_fin_y_al_cabo" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="884" ctag="Fc" end="885" form="," id="t1.204" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="886" ctag="SP" end="889" form="por" id="t1.205" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="890" ctag="DA" end="892" form="lo" id="t1.206" lemma="el" num="singular" pos="determiner" tag="DA00S0" type="article">
+        <morpho>
+          <analysis ctag="DA" lemma="el" num="singular" pos="determiner" selected="1" tag="DA00S0" type="article"/>
+          <analysis case="accusative" ctag="PP" gen="masculine" lemma="lo" num="singular" person="3" pos="pronoun" tag="PP3MSA0" type="personal"/>
+          <analysis ctag="NC" gen="masculine" lemma="lo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="893" ctag="PI" end="898" form="demás" gen="common" id="t1.207" lemma="demás" num="plural" pos="pronoun" tag="PI0CP00" type="indefinite">
+        <morpho>
+          <analysis ctag="PI" gen="common" lemma="demás" num="plural" pos="pronoun" selected="1" tag="PI0CP00" type="indefinite"/>
+          <analysis ctag="DI" gen="common" lemma="demás" num="plural" pos="determiner" tag="DI0CP0" type="indefinite"/>
+        </morpho>
+      </token>
+      <token begin="898" ctag="Fc" end="899" form="," id="t1.208" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="900" ctag="SP" end="902" form="en" id="t1.209" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="903" ctag="NC" end="911" form="realidad" gen="feminine" id="t1.210" lemma="realidad" num="singular" pos="noun" tag="NCFS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="realidad" num="singular" pos="noun" selected="1" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="911" ctag="Fc" end="912" form="," id="t1.211" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="913" ctag="SP" end="915" form="en" id="t1.212" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="916" ctag="DA" end="918" form="el" gen="masculine" id="t1.213" lemma="el" num="singular" pos="determiner" tag="DA0MS0" type="article">
+        <morpho>
+          <analysis ctag="DA" gen="masculine" lemma="el" num="singular" pos="determiner" selected="1" tag="DA0MS0" type="article"/>
+        </morpho>
+      </token>
+      <token begin="919" ctag="NC" end="924" form="fondo" gen="masculine" id="t1.214" lemma="fondo" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="fondo" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="924" ctag="Fc" end="925" form="," id="t1.215" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="926" ctag="SP" end="928" form="de" id="t1.216" lemma="de" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="de" pos="adposition" selected="1" tag="SP" type="preposition"/>
+          <analysis ctag="NC" gen="feminine" lemma="de" num="singular" pos="noun" tag="NCFS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="929" ctag="NC" end="934" form="hecho" gen="masculine" id="t1.217" lemma="hecho" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="hacer" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="hecho" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="934" ctag="Fc" end="935" form="," id="t1.218" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="936" ctag="RG" end="947" form="por_ejemplo" id="t1.219" lemma="por_ejemplo" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="por_ejemplo" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="947" ctag="Fc" end="948" form="," id="t1.220" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="949" ctag="SP" end="951" form="en" id="t1.221" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="952" ctag="AQ" end="962" form="particular" gen="common" id="t1.222" lemma="particular" num="singular" pos="adjective" tag="AQ0CS00" type="qualificative">
+        <morpho>
+          <analysis ctag="AQ" gen="common" lemma="particular" num="singular" pos="adjective" selected="1" tag="AQ0CS00" type="qualificative"/>
+          <analysis ctag="NC" gen="common" lemma="particular" num="singular" pos="noun" tag="NCCS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="962" ctag="Fc" end="963" form="," id="t1.223" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="964" ctag="RG" end="969" form="claro" id="t1.224" lemma="claro" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="AQ" gen="masculine" lemma="claro" num="singular" pos="adjective" tag="AQ0MS00" type="qualificative"/>
+          <analysis ctag="RG" lemma="claro" pos="adverb" selected="1" tag="RG" type="general"/>
+          <analysis ctag="I" lemma="claro" pos="interjection" tag="I"/>
+          <analysis ctag="NC" gen="masculine" lemma="claro" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="969" ctag="Fc" end="970" form="," id="t1.225" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="971" ctag="RG" end="982" form="desde_luego" id="t1.226" lemma="desde_luego" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="desde_luego" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="982" ctag="Fc" end="983" form="," id="t1.227" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="984" ctag="RG" end="996" form="por_supuesto" id="t1.228" lemma="por_supuesto" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="por_supuesto" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="996" ctag="Fc" end="997" form="," id="t1.229" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="998" ctag="RG" end="1010" form="naturalmente" id="t1.230" lemma="naturalmente" pos="adverb" tag="RG" type="general">
+        <morpho>
+          <analysis ctag="RG" lemma="naturalmente" pos="adverb" selected="1" tag="RG" type="general"/>
+        </morpho>
+      </token>
+      <token begin="1010" ctag="Fc" end="1011" form="," id="t1.231" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1012" ctag="SP" end="1015" form="sin" id="t1.232" lemma="sin" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="sin" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="1016" ctag="NC" end="1020" form="duda" gen="feminine" id="t1.233" lemma="duda" num="singular" pos="noun" tag="NCFS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="feminine" lemma="duda" num="singular" pos="noun" selected="1" tag="NCFS000" type="common"/>
+          <analysis ctag="VMI" lemma="dudar" mood="indicative" num="singular" person="3" pos="verb" tag="VMIP3S0" tense="present" type="main"/>
+          <analysis ctag="VMM" lemma="dudar" mood="imperative" num="singular" person="2" pos="verb" tag="VMM02S0" type="main"/>
+        </morpho>
+      </token>
+      <token begin="1020" ctag="Fc" end="1021" form="," id="t1.234" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1022" ctag="SP" end="1024" form="en" id="t1.235" lemma="en" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="en" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="1025" ctag="NC" end="1031" form="efecto" gen="masculine" id="t1.236" lemma="efecto" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="NC" gen="masculine" lemma="efecto" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="1031" ctag="Fc" end="1032" form="," id="t1.237" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1033" ctag="SP" end="1036" form="por" id="t1.238" lemma="por" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="por" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="1037" ctag="DA" end="1039" form="lo" id="t1.239" lemma="el" num="singular" pos="determiner" tag="DA00S0" type="article">
+        <morpho>
+          <analysis ctag="DA" lemma="el" num="singular" pos="determiner" selected="1" tag="DA00S0" type="article"/>
+          <analysis case="accusative" ctag="PP" gen="masculine" lemma="lo" num="singular" person="3" pos="pronoun" tag="PP3MSA0" type="personal"/>
+          <analysis ctag="NC" gen="masculine" lemma="lo" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="1040" ctag="VMP" end="1045" form="visto" gen="masculine" id="t1.240" lemma="ver" mood="participle" num="singular" pos="verb" tag="VMP00SM" type="main">
+        <morpho>
+          <analysis ctag="VMP" gen="masculine" lemma="ver" mood="participle" num="singular" pos="verb" selected="1" tag="VMP00SM" type="main"/>
+          <analysis ctag="VMI" lemma="vestir" mood="indicative" num="singular" person="1" pos="verb" tag="VMIP1S0" tense="present" type="main"/>
+        </morpho>
+      </token>
+      <token begin="1045" ctag="Fc" end="1046" form="," id="t1.241" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1047" ctag="SP" end="1048" form="a" id="t1.242" lemma="a" pos="adposition" tag="SP" type="preposition">
+        <morpho>
+          <analysis ctag="SP" lemma="a" pos="adposition" selected="1" tag="SP" type="preposition"/>
+        </morpho>
+      </token>
+      <token begin="1048" ctag="DA" end="1049" form="el" gen="masculine" id="t1.243" lemma="el" num="singular" pos="determiner" tag="DA0MS0" type="article">
+        <morpho>
+          <analysis ctag="DA" gen="masculine" lemma="el" num="singular" pos="determiner" selected="1" tag="DA0MS0" type="article"/>
+        </morpho>
+      </token>
+      <token begin="1050" ctag="NC" end="1057" form="parecer" gen="masculine" id="t1.244" lemma="parecer" num="singular" pos="noun" tag="NCMS000" type="common">
+        <morpho>
+          <analysis ctag="VMN" lemma="parecer" mood="infinitive" pos="verb" tag="VMN0000" type="main"/>
+          <analysis ctag="NC" gen="masculine" lemma="parecer" num="singular" pos="noun" selected="1" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="1057" ctag="Fc" end="1058" form="," id="t1.245" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1059" ctag="CC" end="1063" form="pero" id="t1.246" lemma="pero" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="pero" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+          <analysis ctag="NC" gen="masculine" lemma="pero" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="1063" ctag="Fc" end="1064" form="," id="t1.247" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1065" ctag="CC" end="1068" form="mas" id="t1.248" lemma="mas" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="mas" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="1068" ctag="Fc" end="1069" form="," id="t1.249" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1070" ctag="CC" end="1076" form="empero" id="t1.250" lemma="empero" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="empero" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+        </morpho>
+      </token>
+      <token begin="1076" ctag="Fc" end="1077" form="," id="t1.251" lemma="," pos="punctuation" tag="Fc" type="comma">
+        <morpho>
+          <analysis ctag="Fc" lemma="," pos="punctuation" selected="1" tag="Fc" type="comma"/>
+        </morpho>
+      </token>
+      <token begin="1078" ctag="CC" end="1082" form="sino" id="t1.252" lemma="sino" pos="conjunction" tag="CC" type="coordinating">
+        <morpho>
+          <analysis ctag="CC" lemma="sino" pos="conjunction" selected="1" tag="CC" type="coordinating"/>
+          <analysis ctag="NC" gen="masculine" lemma="sino" num="singular" pos="noun" tag="NCMS000" type="common"/>
+        </morpho>
+      </token>
+      <token begin="1082" ctag="Fp" end="1083" form="." id="t1.253" lemma="." pos="punctuation" tag="Fp" type="period">
+        <morpho>
+          <analysis ctag="Fp" lemma="." pos="punctuation" selected="1" tag="Fp" type="period"/>
+        </morpho>
+      </token>
+    </sentence>
+  </paragraph>
+</document>
+</document>
