@@ -137,7 +137,7 @@ class Simultext:
             marco_botones,
             text="Correferencia\nTextual",
             command=self.correferencia_textual,
-            bg=config.COLOR_BOTON_AZUL_CLARO,
+            bg=config.COLOR_BOTON_AZUL,
             **opciones_boton
         )
         self.boton_correferencia.grid(row=1, column=2, padx=10, pady=10, sticky="ew")
@@ -147,7 +147,7 @@ class Simultext:
             marco_botones,
             text="Progresión tematica",
             command=self.tema_rema,
-            bg=config.COLOR_BOTON_AZUL_CLARO,
+            bg=config.COLOR_BOTON_AZUL,
             **opciones_boton
         )
         self.boton_tema_rema.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
@@ -165,11 +165,11 @@ class Simultext:
         """Esta funcion se encarga de mostrar un mensaje de ayuda actualizada"""
         messagebox.showinfo(
             "Ayuda",
-            "Este programa permite etiquetar textos en formato XML.\n\n"
+            "Este programa permite etiquetar nociones de lingüistica textual.\n\n"
             "OPCIONES:\n"
-            "• NUEVO PROYECTO: Seleccione un XML para crear un nuevo proyecto (se crea automáticamente el JSON)\n"
-            "• ABRIR PROYECTO: Continúe un proyecto existente seleccionando un JSON\n\n"
-            "FLUJO DE ETIQUETADO:\n"
+            "* NUEVO PROYECTO: Seleccione un XML adecuado para iniciar un nuevo proyecto. \n"
+            "* ABRIR PROYECTO: Continúe un proyecto existente seleccionando un JSON\n\n"
+            "Flujo de etiquetado sugerido:\n"
             "1. Etiquete los párrafos y tipo de discurso\n"
             "2. Etiquete las oraciones\n"
             "3. Conectores lógico-temporales\n"

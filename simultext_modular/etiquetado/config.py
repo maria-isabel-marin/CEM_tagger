@@ -12,6 +12,7 @@ COLOR_BOTON_AZUL = "#20B2AA"
 COLOR_BOTON_AZUL_CLARO = "#B0C4DE"
 COLOR_BOTON_VERDE_CLARO = "#58D68D"  # Nuevo: verde más claro
 COLOR_BOTON_TEXTO = "white"
+COLOR_BOTON_ACTIVO = "#2C3E50"
 
 # Fuentes
 FUENTE_TITULO = ("Arial", 24, "bold")
@@ -26,6 +27,58 @@ VENTANA_ALTO = 600
 
 #tamaños
 ALTURA_BOTON1 = 3
+
+
+COLOR_BOTON_ROJO = "#20B2AA"
+
+# Colores para tema y rema
+COLOR_TEMA = "#FFFFCC"  # Amarillo claro
+COLOR_REMA = "#CCFFCC"   # Verde claro
+COLOR_SELECCIONADO = "#FF9999"  # Rojo claro para tokens seleccionados
+
+# Tipos de progresión (etiquetas para tema/rema)
+TIPOS_PROGRESION = [
+    ("Progresión con tema constante", "prog_tem_const"),
+    ("Progresión lineal", "prog_lineal"), 
+    ("Progresión con temas derivados", "prog_tem_der")
+]
+
+# Mapeo de etiquetas a nombres completos (para mostrar en interfaz)
+ETIQUETAS_PROGRESION = {
+    "prog_tem_const": "Progresión con tema constante",
+    "prog_lineal": "Progresión lineal",
+    "prog_tem_der": "Progresión con temas derivados"
+}
+
+# Configuración de fuente para la interfaz
+FUENTE_TITULO = ("Arial", 14, "bold")
+FUENTE_SUBTITULO = ("Arial", 11, "bold")
+FUENTE_NORMAL = ("Arial", 11)
+FUENTE_MONOSPACE = ("Courier", 10)
+
+# Configuración de texto en área de texto
+FUENTE_TOKEN = ("Arial", 12, "bold")
+FUENTE_TOKEN_ID = ("Arial", 7, "italic")
+
+# Otros colores útiles
+COLOR_BOTON_TEMA = "#FFD700"  # Dorado para botón de tema
+COLOR_BOTON_REMA = "#90EE90"  # Verde claro para botón de rema
+COLOR_FONDO_JSON = "#F5F5F5"  # Fondo gris claro para área JSON
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Etiquetas Parrafos
@@ -148,3 +201,49 @@ CASOS_CONECTORES = {
     "Epistémicos": [["claro", "desde_luego", "por_supuesto", "naturalmente", "sin duda", "en efecto", "por lo visto", "a el parecer"], "MD_Epis", "lightgray"],
     "Adversativo": [["pero", "mas", "empero", "sino"], "MD_Adv", "darkorange"]
 }
+
+ETIQUETAS_CORREFERENCIA = {
+    "Referente" : "R",
+    "Anáfora fiel": "An_Fi",
+    "Anáfora infiel": "An_inf",
+    "Anáfora metafórica": "An_met",
+    "Anáfora conceptual": "An_con",
+    "Anáfora asociativa": "An_aso",
+    "Anáfora de referencia": "An_ref",
+    "Anáfora de sentido o superficial": "An_sup",
+    "Anáfora total": "An_tot",
+    "Anáfora parcial": "An_par",
+    "Sintagma nominal": "An_signom",
+    "Sintagma verbal": "An_sigv",
+    "Sintagma adverbial": "An_sigadv",
+    "Oración completa, hecho o idea": "An_ora",
+    "Anáfora de pronombre personal (Simple)": "An_pps",
+    "Anáfora de pronombre personal (Complemento)": "An_ppcom",
+    "Anáfora de pronombre personal (Objeto)": "An_ppo",
+    "Anáfora de pronombre personal (Dativo)": "An_ppd",
+    "Anáfora de pronombre personal (Posesivo)": "An_ppp",
+    "Anáfora de pronombre personal (Reflexivo)": "An_pref",
+    "Anáfora de pronombre relativo": "An_rel",
+    "Anáfora de sintagma nominal (Artículo)": "An_snart",
+    "Anáfora de sintagma nominal (Determinante)": "An_sndet",
+    "Anáfora superficial numérica": "An_sup_num",
+    "Anáfora verbal (Simple)": "An_ver",
+    "Anáfora verbal (Complemento)": "An_vercom",
+    "Anáfora adverbial (Temporal)": "An_temp",
+    "Anáfora adverbial (Locativo)": "An_loc",
+    "Anáforas integrativas": "An_integ",
+    "Anáfora determinativa": "An_det"
+}
+
+# Colores para los 5 Referentes fijos (R1 a R5) (IMPORTANTE)
+COLORES_REFERENTES = {
+    "R1": "#FF0000",  # Rojo puro
+    "R2": "#80FF00",  # Verde lima brillante
+    "R3": "#00FFE5",  # Cian / Turquesa
+    "R4": "#003CFF",  # Azul fuerte
+    "R5": "#FF00C8",  # Magenta vibrante
+}
+
+
+# Diccionario Inverso para mostrar la descripción de la etiqueta
+ETIQUETAS_CORREFERENCIA_INVERSA = {v: k for k, v in ETIQUETAS_CORREFERENCIA.items()}

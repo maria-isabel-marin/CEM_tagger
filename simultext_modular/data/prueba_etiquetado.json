@@ -19687,47 +19687,240 @@
     ],
     "Etiquetado": {
       "parrafos": {
-        "p1": "A_Intro",
-        "p2": "A_Intro",
-        "p3": "A_DB"
+        "p1": "A_Tit",
+        "p2": "A_DA",
+        "p3": "A_Intro",
+        "p4": "A_Subt",
+        "p5": "A_Dllo",
+        "p6": "A_Dllo",
+        "p7": "A_Subt",
+        "p8": "A_Dllo",
+        "p9": "A_Con"
       },
       "oraciones": {
         "s1": [
-          "O_Yuxt_Coma"
+          "OS_AH_EA"
         ],
         "s2": [
-          "OS_AH_EN",
-          "OS_NP_A"
+          "Frase"
         ],
         "s3": [
-          "OS_AH_IPT"
+          "OS_AH_EA",
+          "OS_NP_C"
+        ],
+        "s4": [
+          "O_Sub_Sust"
+        ],
+        "s5": [
+          "OS_AH_EA",
+          "OS_NP_A"
+        ],
+        "s6": [
+          "O_Sub_Sust"
+        ],
+        "s7": [
+          "OS_AH_EN",
+          "OS_NP_I"
+        ],
+        "s8": [
+          "O_Sub_Sust"
+        ],
+        "s9": [
+          "A_Cp"
+        ],
+        "s10": [
+          "OC_CCy"
+        ],
+        "s11": [
+          "Frase"
+        ],
+        "s12": [
+          "OC_CCy"
+        ],
+        "s13": [
+          "OC_CCy"
+        ],
+        "s14": [
+          "O_Sub_Adv"
+        ],
+        "s15": [
+          "O_Yuxt_Coma"
+        ],
+        "s16": [
+          "OS_AH_EA"
+        ],
+        "s17": [
+          "O_Yuxt_Coma"
+        ],
+        "s18": [
+          "O_Sub_Sust"
+        ],
+        "s19": [
+          "Frase"
+        ],
+        "s20": [
+          "O_Yuxt_Coma"
+        ],
+        "s21": [
+          "OC_CCy"
+        ],
+        "s22": [
+          "OS_AH_EA",
+          "OS_NP_A"
+        ],
+        "s23": [
+          "O_Sub_Sust"
+        ],
+        "s24": [
+          "O_Sub_Sust"
+        ],
+        "s25": [
+          "OS_AH_EA"
+        ],
+        "s26": [
+          "OS_AH_EA",
+          "OS_NP_T"
+        ],
+        "s27": [
+          "O_Sub_Sust"
+        ],
+        "s28": [
+          "OS_AH_EA",
+          "OS_NP_A"
         ]
       },
       "conectores": {
+        "MD_Com": [
+          [
+            "t1.4"
+          ]
+        ],
         "MD_OrdTemp": [
-          "t10.16"
-        ],
-        "MD_Adv": [
-          "t9.14"
-        ],
-        "MD_Exp": [
-          "t5.0",
-          "t5.1"
+          [
+            "t10.16"
+          ],
+          [
+            "t20.0"
+          ]
         ],
         "MD_Contra": [
           [
-            "t3.11",
-            "t3.12"
+            "t8.0"
+          ]
+        ],
+        "MD_Adv": [
+          [
+            "t9.14"
           ],
           [
-            "t3.13"
+            "t28.13"
+          ]
+        ],
+        "MD_Adit": [
+          [
+            "t6.18",
+            "t6.19"
           ]
         ]
       },
-      "correferentes": [],
-      "tema_rema": [],
+      "correferentes": {
+        "R1": [
+          {
+            "corr": "c0",
+            "tipo": "R",
+            "tokens": [
+              "t3.0",
+              "t3.1"
+            ]
+          },
+          {
+            "corr": "c2",
+            "tipo": "An_Fi",
+            "tokens": [
+              "t10.0",
+              "t10.1"
+            ]
+          },
+          {
+            "corr": "c3",
+            "tipo": "An_Fi",
+            "tokens": [
+              "t5.2",
+              "t5.3"
+            ]
+          }
+        ]
+      },
+      "tema_rema": {
+        "s1": {
+          "tema": [
+            "t1.0"
+          ],
+          "rema": [
+            "t1.6",
+            "t1.5",
+            "t1.3",
+            "t1.1",
+            "t1.4",
+            "t1.2"
+          ],
+          "etiqueta": "prog_tem_const"
+        },
+        "s3": {
+          "tema": [
+            "t3.1",
+            "t3.0"
+          ],
+          "rema": [
+            "t3.28",
+            "t3.29",
+            "t3.25",
+            "t3.32",
+            "t3.19",
+            "t3.21",
+            "t3.23",
+            "t3.31",
+            "t3.24",
+            "t3.27",
+            "t3.22",
+            "t3.20",
+            "t3.30",
+            "t3.26"
+          ],
+          "etiqueta": "prog_lineal"
+        },
+        "s4": {
+          "tema": [
+            "t4.1",
+            "t4.0",
+            "t4.3",
+            "t4.2"
+          ],
+          "rema": [
+            "t4.14",
+            "t4.4",
+            "t4.6",
+            "t4.16",
+            "t4.5",
+            "t4.13",
+            "t4.10",
+            "t4.12",
+            "t4.15",
+            "t4.8",
+            "t4.17",
+            "t4.9",
+            "t4.18",
+            "t4.11",
+            "t4.7"
+          ],
+          "etiqueta": "prog_tem_der"
+        }
+      },
       "discurso": [
-        "D_Jur"
+        "D_Soc",
+        "D_Per",
+        "D_Cien",
+        "D_Acad"
       ]
     }
   }

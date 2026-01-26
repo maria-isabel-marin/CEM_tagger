@@ -1,760 +1,1118 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
-import xml.etree.ElementTree as ET
-import os
+from tkinter import ttk, scrolledtext, messagebox
 import json
+import etiquetado.config as config
+
 
 class VentanaEtiquetadoTemaRema:
-    def __init__(self, root, ruta_xml, tipo_texto):
+    """
+    Ventana para etiquetado de tema y rema por ORACIÓN.
+    Panel izquierdo: texto con tokens (selección múltiple por cursor)
+    Panel derecho: interfaz de etiquetado
+    """
+
+    def __init__(self, root, ruta_json, tipo_texto):
         self.root = root
-        self.ruta_xml = ruta_xml
+        self.root.title("SIMULTEXT - Tema/Rema por Oración")
+        self.root.geometry("1600x900")
+        self.root.configure(bg=config.COLOR_FONDO)
+
+        self.ruta_json = ruta_json
         self.tipo_texto = tipo_texto
 
-        # Crear ventana Toplevel
-        self.ventana = self.root
-        self.ventana.title("Análisis de Progresión Temática - Tema y Rema")
-        self.ventana.geometry("1200x800")
-
-        # Variables de datos
-        self.parrafos = []
-        self.tokens_por_parrafo = {}
-        self.texto_original_por_parrafo = {}
+        # Estructuras de datos
+        self.tokens_por_oracion = {}  # Cambiado: ahora por oración
+        self.token_posiciones = {}
+        self.etiquetado_oraciones = {}  # Diccionario: oracion_id -> {tema: [], rema: [], etiqueta: ""}
+        self.token_info = {}  # Para mapear token_id -> información completa
+        self.oracion_actual = None  # Cambiado: ahora trabajamos con oraciones
+        self.tokens_seleccionados = set()
+        self.drag_start = None
         
-        # Variables para el análisis temático
-        self.estructuras_tematicas = {}  # {parrafo_id: {oracion_id: {tema: [], rema: []}}}
-        self.oraciones_por_parrafo = {}
+        # Variables para botones de selección única
+        self.var_etiqueta_progresion = tk.StringVar()
+        self.botones_etiquetas = {}  # Diccionario para manejar botones de etiquetas
         
-        # Variables de estado
-        self.modo_seleccion = None  # 'tema' o 'rema'
-        self.parrafo_actual = None
-        self.oracion_actual = None
-        self.seleccion_temporal = set()
-        self.colores = {'tema': '#FF9999', 'rema': '#99FF99'}
-
-        # Categorías de Tema y Rema
-        self.categorias_tema = {
-            "Tema_Dado": "Tema dado - Información conocida del contexto",
-            "Tema_Nuevo": "Tema nuevo - Información introducida por primera vez",
-            "Tema_Derivado": "Tema derivado - Inferido del contexto anterior",
-            "Tema_Implícito": "Tema implícito - No expresado directamente"
-        }
+        # Cargar datos
+        self.cargar_datos_desde_json()
         
-        self.categorias_rema = {
-            "Rema_Completivo": "Rema completivo - Completa la información del tema",
-            "Rema_Contrastivo": "Rema contrastivo - Establece contraste o oposición",
-            "Rema_Focal": "Rema focal - Información enfatizada o destacada",
-            "Rema_Expansivo": "Rema expansivo - Amplía o desarrolla la información"
-        }
-
-        # === Frame principal ===
-        main_frame = ttk.Frame(self.ventana)
-        main_frame.pack(fill="both", expand=True, padx=10, pady=10)
-
-        # === Frame para controles ===
-        control_frame = ttk.Frame(main_frame)
-        control_frame.pack(fill="x", pady=(0, 10))
-
-        # Botones para selección de oración
-        ttk.Label(control_frame, text="Seleccionar Oración:").pack(side="left", padx=(0, 5))
-        self.parrafo_var = tk.StringVar()
-        self.parrafo_combo = ttk.Combobox(control_frame, textvariable=self.parrafo_var, 
-                                         state="readonly", width=15)
-        self.parrafo_combo.pack(side="left", padx=(0, 10))
-        self.parrafo_combo.bind('<<ComboboxSelected>>', self.on_parrafo_seleccionado)
-
-        self.oracion_var = tk.StringVar()
-        self.oracion_combo = ttk.Combobox(control_frame, textvariable=self.oracion_var, 
-                                         state="readonly", width=15)
-        self.oracion_combo.pack(side="left", padx=(0, 20))
-        self.oracion_combo.bind('<<ComboboxSelected>>', self.on_oracion_seleccionado)
-
-        # Botones para Tema y Rema
-        ttk.Button(control_frame, text="Seleccionar Tema", 
-                  command=self.iniciar_seleccion_tema, style="Tema.TButton").pack(side="left", padx=(0, 10))
-        ttk.Button(control_frame, text="Seleccionar Rema", 
-                  command=self.iniciar_seleccion_rema, style="Rema.TButton").pack(side="left", padx=(0, 10))
-
-        # Botones de gestión
-        ttk.Button(control_frame, text="Finalizar Análisis", 
-                  command=self.finalizar_analisis).pack(side="left", padx=(20, 10))
-        ttk.Button(control_frame, text="Limpiar Selección", 
-                  command=self.limpiar_seleccion).pack(side="left", padx=(0, 10))
-        ttk.Button(control_frame, text="Ver Progresión Temática", 
-                  command=self.mostrar_progresion_tematica).pack(side="left", padx=(0, 10))
-        ttk.Button(control_frame, text="Guardar Análisis", 
-                  command=self.guardar_json).pack(side="left")
-
-        # === Frame para contenido ===
-        content_frame = ttk.Frame(main_frame)
-        content_frame.pack(fill="both", expand=True)
-
-        # Text widget con scrollbar
-        text_frame = ttk.Frame(content_frame)
-        text_frame.pack(side="left", fill="both", expand=True, padx=(0, 10))
-
-        self.text_widget = tk.Text(text_frame, wrap="word", font=("Arial", 11), 
-                                  cursor="hand2", selectbackground="lightblue")
+        # Crear interfaz completa
+        self.crear_interfaz()
         
-        v_scrollbar = ttk.Scrollbar(text_frame, orient="vertical", command=self.text_widget.yview)
-        h_scrollbar = ttk.Scrollbar(text_frame, orient="horizontal", command=self.text_widget.xview)
-        self.text_widget.configure(yscrollcommand=v_scrollbar.set, xscrollcommand=h_scrollbar.set)
-
-        self.text_widget.pack(side="left", fill="both", expand=True)
-        v_scrollbar.pack(side="right", fill="y")
-        h_scrollbar.pack(side="bottom", fill="x")
-
-        # Bind events para selección de texto
-        self.text_widget.bind("<Button-1>", self.on_text_click)
-        self.text_widget.configure(state="disabled")
-
-        # === Frame para información y controles ===
-        info_frame = ttk.Frame(content_frame)
-        info_frame.pack(side="right", fill="y", padx=(10, 0))
-
-        # Panel de categorías de Tema
-        ttk.Label(info_frame, text="Categorías de Tema", 
-                 font=("Arial", 10, "bold"), foreground="darkred").pack(pady=(0, 5))
+        # Mostrar texto
+        self.mostrar_texto()
         
-        self.categoria_tema_var = tk.StringVar()
-        self.categoria_tema_combo = ttk.Combobox(info_frame, textvariable=self.categoria_tema_var, 
-                                                values=list(self.categorias_tema.keys()), 
-                                                state="readonly")
-        self.categoria_tema_combo.pack(fill="x", pady=(0, 5))
-        self.categoria_tema_combo.bind('<<ComboboxSelected>>', self.mostrar_descripcion_tema)
-        
-        self.descripcion_tema_label = ttk.Label(info_frame, text="", wraplength=280, 
-                                               font=("Arial", 8), foreground="darkred")
-        self.descripcion_tema_label.pack(fill="x", pady=(0, 10))
+        # Cargar etiquetado existente si existe
+        self.cargar_etiquetado_existente()
 
-        # Panel de categorías de Rema
-        ttk.Label(info_frame, text="Categorías de Rema", 
-                 font=("Arial", 10, "bold"), foreground="darkgreen").pack(pady=(0, 5))
-        
-        self.categoria_rema_var = tk.StringVar()
-        self.categoria_rema_combo = ttk.Combobox(info_frame, textvariable=self.categoria_rema_var, 
-                                                values=list(self.categorias_rema.keys()), 
-                                                state="readonly")
-        self.categoria_rema_combo.pack(fill="x", pady=(0, 5))
-        self.categoria_rema_combo.bind('<<ComboboxSelected>>', self.mostrar_descripcion_rema)
-        
-        self.descripcion_rema_label = ttk.Label(info_frame, text="", wraplength=280, 
-                                               font=("Arial", 8), foreground="darkgreen")
-        self.descripcion_rema_label.pack(fill="x", pady=(0, 10))
-
-        # Panel de análisis actual
-        ttk.Label(info_frame, text="Análisis Actual", 
-                 font=("Arial", 10, "bold")).pack(pady=(0, 5))
-        
-        self.seleccion_text = tk.Text(info_frame, wrap="word", width=35, height=8, 
-                                     font=("Arial", 9), state="disabled")
-        self.seleccion_text.pack(fill="x", pady=(0, 10))
-
-        # Panel de progresión temática
-        ttk.Label(info_frame, text="Progresión Temática", 
-                 font=("Arial", 10, "bold")).pack(pady=(0, 5))
-
-        self.info_text = tk.Text(info_frame, wrap="word", width=35, height=15, 
-                                font=("Arial", 9), state="disabled")
-        info_scrollbar = ttk.Scrollbar(info_frame, orient="vertical", command=self.info_text.yview)
-        self.info_text.configure(yscrollcommand=info_scrollbar.set)
-        
-        self.info_text.pack(side="left", fill="both", expand=True)
-        info_scrollbar.pack(side="right", fill="y")
-
-        # === Frame inferior ===
-        bottom_frame = ttk.Frame(main_frame)
-        bottom_frame.pack(fill="x", pady=(10, 0))
-
-        ttk.Button(bottom_frame, text="Cerrar", command=self.ventana.destroy).pack(side="right")
-
-        # Estado actual
-        self.estado_label = ttk.Label(bottom_frame, text="Seleccione un párrafo y oración para comenzar")
-        self.estado_label.pack(side="left")
-
-        # Configurar estilos para botones
-        style = ttk.Style()
-        style.configure("Tema.TButton", foreground="darkred")
-        style.configure("Rema.TButton", foreground="darkgreen")
-
-        # Cargar datos del XML
-        self.cargar_datos_xml()
-        self.actualizar_combo_parrafos()
-
-    def mostrar_descripcion_tema(self, event=None):
-        """Muestra la descripción de la categoría de Tema seleccionada."""
-        categoria = self.categoria_tema_var.get()
-        if categoria in self.categorias_tema:
-            self.descripcion_tema_label.config(text=self.categorias_tema[categoria])
-
-    def mostrar_descripcion_rema(self, event=None):
-        """Muestra la descripción de la categoría de Rema seleccionada."""
-        categoria = self.categoria_rema_var.get()
-        if categoria in self.categorias_rema:
-            self.descripcion_rema_label.config(text=self.categorias_rema[categoria])
-
-    def on_parrafo_seleccionado(self, event=None):
-        """Cuando se selecciona un párrafo del combo."""
-        parrafo_id = self.parrafo_var.get()
-        if parrafo_id:
-            self.parrafo_actual = parrafo_id
-            self.actualizar_combo_oraciones()
-            self.estado_label.config(text=f"Párrafo seleccionado: {parrafo_id}")
-
-    def on_oracion_seleccionado(self, event=None):
-        """Cuando se selecciona una oración del combo."""
-        oracion_id = self.oracion_var.get()
-        if oracion_id and self.parrafo_actual:
-            self.oracion_actual = oracion_id
-            self.actualizar_panel_seleccion()
-            self.estado_label.config(text=f"Analizando: P{self.parrafo_actual} - O{self.oracion_actual}")
-
-    def cargar_datos_xml(self):
-        """Carga párrafos, oraciones y tokens desde el archivo XML."""
+    # =========================================================
+    # CARGA DEL JSON (AHORA POR ORACIÓN)
+    # =========================================================
+    def cargar_datos_desde_json(self):
         try:
-            tree = ET.parse(self.ruta_xml)
-            root = tree.getroot()
+            with open(self.ruta_json, "r", encoding="utf-8") as f:
+                self.datos_completos = json.load(f)
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo cargar el archivo JSON:\n{e}")
+            return
 
-            self.parrafos = []
-            self.tokens_por_parrafo = {}
-            self.oraciones_por_parrafo = {}
-            self.texto_original_por_parrafo = {}
+        parrafos = self.datos_completos.get("document", {}).get("paragraph", [])
+        if isinstance(parrafos, dict):
+            parrafos = [parrafos]
 
-            for parrafo in root.findall(".//paragraph"):
-                parrafo_id = parrafo.get("id")
-                self.parrafos.append(parrafo_id)
-                self.oraciones_por_parrafo[parrafo_id] = []
-                self.tokens_por_parrafo[parrafo_id] = {}
-                self.estructuras_tematicas[parrafo_id] = {}
+        contador_oracion = 0
+        
+        for parrafo in parrafos:
+            if not parrafo:
+                continue
 
-                texto_parrafo = ""
+            oraciones = parrafo.get("sentence", [])
+            if isinstance(oraciones, dict):
+                oraciones = [oraciones]
 
-                for oracion in parrafo.findall(".//sentence"):
-                    oracion_id = oracion.get("id")
-                    self.oraciones_por_parrafo[parrafo_id].append(oracion_id)
-                    self.estructuras_tematicas[parrafo_id][oracion_id] = {
-                        'tema': {'tokens': [], 'categoria': ''},
-                        'rema': {'tokens': [], 'categoria': ''}
+            for oracion in oraciones:
+                contador_oracion += 1
+                oracion_id = f"s{contador_oracion}"
+                
+                # Inicializar estructura para esta oración
+                self.tokens_por_oracion[oracion_id] = []
+                self.etiquetado_oraciones[oracion_id] = {
+                    "tema": [], 
+                    "rema": [],
+                    "etiqueta": ""  # Tipo de progresión
+                }
+
+                tokens = oracion.get("token", [])
+                if isinstance(tokens, dict):
+                    tokens = [tokens]
+
+                for tk_info in tokens:
+                    token_id = tk_info.get("@id", "")
+                    self.tokens_por_oracion[oracion_id].append({
+                        "form": tk_info.get("@form", ""),
+                        "id": token_id,
+                        "pos": tk_info.get("@pos", ""),
+                        "lemma": tk_info.get("@lemma", "")
+                    })
+                    self.token_info[token_id] = {
+                        "form": tk_info.get("@form", ""),
+                        "pos": tk_info.get("@pos", ""),
+                        "lemma": tk_info.get("@lemma", ""),
+                        "oracion": oracion_id  # Cambiado: ahora guardamos oración
                     }
 
-                    tokens_info = []
-                    for token in oracion.findall(".//token"):
-                        form = token.get("form", "")
-                        token_id = token.get("id", "")
-
-                        tokens_info.append({
-                            "form": form,
-                            "id": token_id,
-                            "form_lower": form.lower()
-                        })
-
-                        texto_parrafo += form + " "
-
-                    self.tokens_por_parrafo[parrafo_id][oracion_id] = tokens_info
-
-                self.texto_original_por_parrafo[parrafo_id] = texto_parrafo.strip()
-
-            self.mostrar_texto_con_tokens()
-
+    def cargar_etiquetado_existente(self):
+        """Carga el etiquetado de tema/rema existente desde el JSON."""
+        try:
+            etiquetado = self.datos_completos.get("document", {}).get("Etiquetado", {})
+            tema_rema_data = etiquetado.get("tema_rema", {})
+            
+            if tema_rema_data:
+                # Asumimos que la estructura existente ya es por oración
+                for oracion_id, etiquetas in tema_rema_data.items():
+                    if oracion_id in self.etiquetado_oraciones:
+                        self.etiquetado_oraciones[oracion_id]["tema"] = etiquetas.get("tema", [])
+                        self.etiquetado_oraciones[oracion_id]["rema"] = etiquetas.get("rema", [])
+                        self.etiquetado_oraciones[oracion_id]["etiqueta"] = etiquetas.get("etiqueta", "")
         except Exception as e:
-            messagebox.showerror("Error", f"No se pudo cargar el XML: {str(e)}", parent=self.ventana)
+            print(f"Error al cargar etiquetado existente: {e}")
 
-    def mostrar_texto_con_tokens(self):
-        """Muestra el texto con los tokens formateados para selección."""
-        self.text_widget.configure(state="normal")
-        self.text_widget.delete("1.0", tk.END)
+    # =========================================================
+    # INTERFAZ COMPLETA
+    # =========================================================
+    def crear_interfaz(self):
+        # Marco principal con dos paneles
+        main_frame = tk.Frame(self.root, bg=config.COLOR_FONDO)
+        main_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-        for parrafo_id in self.parrafos:
-            # Encabezado del párrafo
-            self.text_widget.insert(tk.END, f"PÁRRAFO {parrafo_id}:\n", "parrafo_header")
-            
-            for oracion_id in self.oraciones_por_parrafo[parrafo_id]:
-                # Encabezado de oración
-                self.text_widget.insert(tk.END, f"  Oración {oracion_id}: ", "oracion_header")
-                
-                tokens = self.tokens_por_parrafo[parrafo_id][oracion_id]
-                
-                for token_info in tokens:
-                    token_text = token_info['form']
-                    token_id_text = f"({token_info['id']}) "
+        # Panel izquierdo (60% del ancho)
+        left_panel = tk.Frame(main_frame, bg=config.COLOR_FONDO)
+        left_panel.pack(side="left", fill="both", expand=True, padx=(0, 10))
 
-                    tag_name = f"token_{parrafo_id}_{oracion_id}_{token_info['id']}"
+        # Panel derecho (40% del ancho)
+        right_panel = tk.Frame(main_frame, bg=config.COLOR_FONDO)
+        right_panel.pack(side="right", fill="both", expand=True)
 
-                    # Insertar palabra
-                    self.text_widget.insert(tk.END, token_text, (tag_name, "token_text"))
-                    # Insertar id
-                    self.text_widget.insert(tk.END, token_id_text, (tag_name, "token_id"))
+        # ========== PANEL IZQUIERDO: TEXTO ==========
+        tk.Label(
+            left_panel,
+            text="TEXTO PARA ANÁLISIS DE TEMA/REMA POR ORACIÓN",
+            font=("Arial", 14, "bold"),
+            bg=config.COLOR_FONDO,
+            fg=config.COLOR_TITULO
+        ).pack(pady=5)
 
-                    # Tag principal para eventos
-                    self.text_widget.tag_bind(tag_name, "<Button-1>",
-                                            lambda e, tid=token_info['id'], pid=parrafo_id, oid=oracion_id:
-                                            self.seleccionar_token(tid, pid, oid))
-
-                self.text_widget.insert(tk.END, "\n")
-            
-            self.text_widget.insert(tk.END, "\n")
+        # Botón para limpiar selección
+        frame_seleccion = tk.Frame(left_panel, bg=config.COLOR_FONDO)
+        frame_seleccion.pack(fill="x", pady=(0, 5))
         
-        # Configurar estilos
-        self.text_widget.tag_configure("parrafo_header", font=("Arial", 12, "bold"), 
-                                      foreground="darkblue", spacing3=8)
-        self.text_widget.tag_configure("oracion_header", font=("Arial", 10, "bold"), 
-                                      foreground="darkgreen")
-        self.text_widget.tag_configure("token_text", font=("Arial", 11))
-        self.text_widget.tag_configure("token_id", font=("Arial", 6), foreground="gray")
+        tk.Button(
+            frame_seleccion,
+            text="Limpiar Selección",
+            bg=config.COLOR_BOTON_ROJO,
+            fg="white",
+            font=("Arial", 10),
+            command=self.limpiar_seleccion
+        ).pack(side="right")
+
+        # Área de texto con scroll
+        self.text_area = scrolledtext.ScrolledText(
+            left_panel, 
+            wrap="word",
+            font=("Arial", 12), 
+            bg="white", 
+            padx=10, 
+            pady=10,
+            cursor="hand2"  # Cambia el cursor a mano
+        )
+        self.text_area.pack(fill="both", expand=True)
+
+        # Configurar tags para visualización
+        self.text_area.tag_config("token", font=config.FUENTE_TOKEN)
+        self.text_area.tag_config("id", font=config.FUENTE_TOKEN_ID)
+        self.text_area.tag_config("tema", background=config.COLOR_TEMA, foreground="black")
+        self.text_area.tag_config("rema", background=config.COLOR_REMA, foreground="black")
+        self.text_area.tag_config("seleccionado", background=config.COLOR_SELECCIONADO, foreground="black")
+        self.text_area.tag_config("oracion_actual", background="#E6F3FF", relief="ridge", borderwidth=1)
+
+        # Bind eventos del mouse para selección múltiple
+        self.text_area.bind("<Button-1>", self.on_text_click_start)
+        self.text_area.bind("<B1-Motion>", self.on_text_drag)
+        self.text_area.bind("<ButtonRelease-1>", self.on_text_click_end)
+        self.text_area.bind("<Control-Button-1>", self.on_text_ctrl_click)  # Ctrl+click para añadir
+        self.text_area.bind("<Button-3>", self.on_text_right_click)  # Click derecho para menú contextual
+
+        # ========== PANEL DERECHO: ETIQUETADO ==========
+        # Título del panel derecho
+        tk.Label(
+            right_panel,
+            text="ETIQUETADO TEMA/REMA POR ORACIÓN",
+            font=("Arial", 14, "bold"),
+            bg=config.COLOR_FONDO,
+            fg=config.COLOR_TITULO
+        ).pack(pady=5)
+
+        # Frame para selección de oración con botones
+        frame_oracion = tk.Frame(right_panel, bg=config.COLOR_FONDO)
+        frame_oracion.pack(fill="x", pady=(0, 10))
+
+        tk.Label(
+            frame_oracion,
+            text="Seleccionar Oración:",
+            font=("Arial", 11, "bold"),
+            bg=config.COLOR_FONDO
+        ).pack(anchor="w", pady=(0, 5))
+
+        # Frame para botones de oraciones con scroll
+        frame_botones_oraciones = tk.Frame(frame_oracion, bg=config.COLOR_FONDO)
+        frame_botones_oraciones.pack(fill="x", pady=(0, 10))
+
+        # Canvas y scrollbar para botones de oraciones
+        self.canvas_oraciones = tk.Canvas(frame_botones_oraciones, bg=config.COLOR_FONDO, height=50)
+        scrollbar_oraciones = tk.Scrollbar(frame_botones_oraciones, orient="horizontal", command=self.canvas_oraciones.xview)
         
-        self.text_widget.configure(state="disabled")
+        # Frame interno para los botones
+        self.frame_botones_interno = tk.Frame(self.canvas_oraciones, bg=config.COLOR_FONDO)
+        
+        # Configurar canvas
+        self.canvas_oraciones.configure(xscrollcommand=scrollbar_oraciones.set)
+        self.canvas_oraciones_window = self.canvas_oraciones.create_window((0, 0), window=self.frame_botones_interno, anchor="nw")
+        
+        self.canvas_oraciones.pack(side="top", fill="x", expand=True)
+        scrollbar_oraciones.pack(side="bottom", fill="x")
+        
+        # Configurar el frame interno para ajustar tamaño
+        self.frame_botones_interno.bind("<Configure>", self.on_frame_configure_oraciones)
+        
+        # Crear botones de oraciones
+        self.botones_oraciones = {}
+        for oracion_id in sorted(self.tokens_por_oracion.keys(), 
+                                 key=lambda x: int(x[1:]) if x[1:].isdigit() else 0):
+            btn = tk.Button(
+                self.frame_botones_interno,
+                text=f"Oración {oracion_id[1:]}",
+                bg=config.COLOR_BOTON_AZUL,
+                fg="white",
+                font=("Arial", 10),
+                width=12,
+                command=lambda oid=oracion_id: self.seleccionar_oracion(oid)
+            )
+            btn.pack(side="left", padx=2, pady=2)
+            self.botones_oraciones[oracion_id] = btn
+        
+        # Botón para nueva oración
+        tk.Button(
+            frame_oracion,
+            text="+ NUEVA ORACIÓN",
+            bg=config.COLOR_BOTON_VERDE,
+            fg="white",
+            font=("Arial", 10, "bold"),
+            command=self.nueva_oracion,
+            width=15
+        ).pack(side="left", padx=(0, 10))
+        
+        # Botón para limpiar etiquetado de la oración actual
+        tk.Button(
+            frame_oracion,
+            text="Limpiar Oración",
+            bg=config.COLOR_BOTON_ROJO,
+            fg="white",
+            font=("Arial", 10),
+            command=self.limpiar_oracion_actual,
+            width=12
+        ).pack(side="right")
 
-    def actualizar_combo_parrafos(self):
-        """Actualiza el combobox de párrafos."""
-        self.parrafo_combo['values'] = self.parrafos
-        if self.parrafos and not self.parrafo_var.get():
-            self.parrafo_var.set(self.parrafos[0])
-            self.parrafo_actual = self.parrafos[0]
-            self.actualizar_combo_oraciones()
+        # Frame para información de selección
+        frame_seleccion_info = tk.Frame(right_panel, bg=config.COLOR_FONDO)
+        frame_seleccion_info.pack(fill="x", pady=(0, 10))
 
-    def actualizar_combo_oraciones(self):
-        """Actualiza el combobox de oraciones para el párrafo actual."""
-        if self.parrafo_actual:
-            oraciones = self.oraciones_por_parrafo[self.parrafo_actual]
-            self.oracion_combo['values'] = oraciones
-            if oraciones and not self.oracion_var.get():
-                self.oracion_var.set(oraciones[0])
-                self.oracion_actual = oraciones[0]
-                self.actualizar_panel_seleccion()
+        tk.Label(
+            frame_seleccion_info,
+            text="Tokens seleccionados:",
+            font=("Arial", 11, "bold"),
+            bg=config.COLOR_FONDO
+        ).grid(row=0, column=0, sticky="w", padx=(0, 10))
 
-    def iniciar_seleccion_tema(self):
-        """Inicia la selección de Tema."""
+        self.label_seleccion_info = tk.Label(
+            frame_seleccion_info,
+            text="0 tokens",
+            font=("Arial", 11),
+            bg=config.COLOR_FONDO,
+            fg="#555555"
+        )
+        self.label_seleccion_info.grid(row=0, column=1, sticky="w")
+
+        # Frame para botones de etiquetado rápido
+        frame_botones_rapidos = tk.Frame(right_panel, bg=config.COLOR_FONDO)
+        frame_botones_rapidos.pack(fill="x", pady=(0, 10))
+
+        tk.Label(
+            frame_botones_rapidos,
+            text="Etiquetado Rápido:",
+            font=("Arial", 11, "bold"),
+            bg=config.COLOR_FONDO
+        ).pack(anchor="w", pady=(0, 5))
+
+        # Botones para etiquetado rápido
+        frame_botones_accion = tk.Frame(frame_botones_rapidos, bg=config.COLOR_FONDO)
+        frame_botones_accion.pack(fill="x")
+
+        tk.Button(
+            frame_botones_accion,
+            text="+ TEMA",
+            bg=config.COLOR_BOTON_TEMA,
+            fg="black",
+            font=("Arial", 11, "bold"),
+            command=self.agregar_tema,
+            width=12,
+            height=2
+        ).pack(side="left", padx=(0, 10))
+
+        tk.Button(
+            frame_botones_accion,
+            text="+ REMA",
+            bg=config.COLOR_BOTON_REMA,
+            fg="black",
+            font=("Arial", 11, "bold"),
+            command=self.agregar_rema,
+            width=12,
+            height=2
+        ).pack(side="left")
+
+
+
+        # Frame para selección de etiqueta de progresión (BOTONES)
+        frame_etiqueta = tk.Frame(right_panel, bg=config.COLOR_FONDO)
+        frame_etiqueta.pack(fill="x", pady=(0, 10))
+
+        tk.Label(
+            frame_etiqueta,
+            text="Etiqueta de Progresión:",
+            font=("Arial", 11, "bold"),
+            bg=config.COLOR_FONDO
+        ).pack(anchor="w", pady=(0, 5))
+
+        # Frame para botones de etiquetas (selección única)
+        frame_botones_etiquetas = tk.Frame(frame_etiqueta, bg=config.COLOR_FONDO)
+        frame_botones_etiquetas.pack(fill="x", pady=(0, 5))
+        
+        # Crear botones para cada tipo de etiqueta
+        for nombre, valor in config.TIPOS_PROGRESION:
+            # Crear variable para este botón
+            btn = tk.Radiobutton(
+                frame_botones_etiquetas,
+                text=nombre,
+                variable=self.var_etiqueta_progresion,
+                value=valor,
+                command=self.aplicar_etiqueta_desde_boton,
+                bg=config.COLOR_FONDO,
+                font=("Arial", 8),
+                indicatoron=0,  # Botón estilo botón, no círculo de radio
+                width=28,
+                height=2
+            )
+            btn.pack(side="left", padx=2, pady=2)
+            self.botones_etiquetas[valor] = btn
+        
+        # Botón para limpiar etiqueta
+        tk.Button(
+            frame_etiqueta,
+            text="Limpiar Etiqueta",
+            bg="#999999",
+            fg="white",
+            font=("Arial", 10),
+            command=self.limpiar_etiqueta,
+            width=15
+        ).pack(side="right", pady=(5, 0))
+
+        # Frame para visualización de etiquetado actual
+        frame_etiquetado = tk.Frame(right_panel, bg=config.COLOR_FONDO)
+        frame_etiquetado.pack(fill="both", expand=True, pady=(0, 5))
+
+        tk.Label(
+            frame_etiquetado,
+            text="Etiquetado Actual de la Oración:",
+            font=("Arial", 11, "bold"),
+            bg=config.COLOR_FONDO
+        ).pack(anchor="w", pady=(0, 5))
+
+        # Área para mostrar tokens etiquetados
+        self.etiquetado_area = scrolledtext.ScrolledText(
+            frame_etiquetado,
+            wrap="word",
+            font=("Arial", 11),
+            bg="white",
+            height=7,
+            padx=10,
+            pady=10
+        )
+        self.etiquetado_area.pack(fill="both", expand=True)
+        self.etiquetado_area.config(state="disabled")
+
+        # ========== BOTONES DE GUARDAR/CANCELAR ==========
+        frame_botones_etiquetado = tk.Frame(frame_etiquetado, bg=config.COLOR_FONDO)
+        frame_botones_etiquetado.pack(fill="x", pady=(10, 0))
+        
+        # Botón GUARDAR TODO - más prominente
+        tk.Button(
+            frame_botones_etiquetado,
+            text="GUARDAR TODO",
+            bg=config.COLOR_BOTON_VERDE,
+            fg="white",
+            font=("Arial", 12, "bold"),
+            command=self.guardar_en_json,
+            width=20,
+            height=2
+        ).pack(side="left", padx=(0, 20))
+        
+        # Botón CERRAR
+        tk.Button(
+            frame_botones_etiquetado,
+            text="CANCELAR",
+            bg=config.COLOR_BOTON_ROJO,
+            fg="white",
+            font=("Arial", 12, "bold"),
+            command=self.root.destroy,
+            width=15,
+            height=2
+        ).pack(side="right")
+
+        # Establecer primera oración como seleccionada
+        if self.tokens_por_oracion:
+            primera_oracion = list(self.tokens_por_oracion.keys())[0]
+            self.seleccionar_oracion(primera_oracion)
+
+    def on_frame_configure_oraciones(self, event):
+        """Ajusta el scrollregion del canvas cuando cambia el tamaño del frame interno."""
+        self.canvas_oraciones.configure(scrollregion=self.canvas_oraciones.bbox("all"))
+
+    # =========================================================
+    # FUNCIONES PARA MOSTRAR TEXTO
+    # =========================================================
+    def mostrar_texto(self):
+        self.text_area.config(state="normal")
+        self.text_area.delete("1.0", tk.END)
+
+        # Limpiar posiciones anteriores
+        self.token_posiciones = {}
+
+        contador_oracion = 0
+        for oracion_id, tokens in self.tokens_por_oracion.items():
+            contador_oracion += 1
+            self.text_area.insert(tk.END, f"\nORACIÓN {oracion_id.upper()}\n")
+
+            for tk_info in tokens:
+                palabra = tk_info["form"]
+                tid = tk_info["id"]
+
+                # Guardar posición de inicio del token
+                inicio = self.text_area.index("end-1c")
+
+                # Insertar palabra con tag especial para identificación
+                tag_token = f"token_{tid}"
+                self.text_area.tag_config(tag_token, font=config.FUENTE_TOKEN)
+                self.text_area.insert(tk.END, palabra, (tag_token, "token"))
+
+                # Insertar ID
+                self.text_area.insert(tk.END, f"({tid}) ", "id")
+
+                # Guardar posición del token
+                pos_inicio = self.text_area.index(f"{inicio}")
+                pos_fin = self.text_area.index(f"{inicio}+{len(palabra)}c")
+                self.token_posiciones[tid] = {
+                    "inicio": pos_inicio,
+                    "fin": pos_fin,
+                    "tag": tag_token,
+                    "oracion": oracion_id
+                }
+
+            self.text_area.insert(tk.END, "\n\n")
+
+        # Aplicar colores según etiquetado existente
+        self.resaltar_etiquetado_en_texto()
+        
+        self.text_area.config(state="disabled")
+
+    def resaltar_etiquetado_en_texto(self):
+        """Resalta los tokens etiquetados en el texto."""
+        for oracion_id, etiquetas in self.etiquetado_oraciones.items():
+            # Resaltar tokens de tema
+            for token_id in etiquetas["tema"]:
+                if token_id in self.token_posiciones:
+                    pos = self.token_posiciones[token_id]
+                    self.text_area.tag_add("tema", pos["inicio"], pos["fin"])
+            
+            # Resaltar tokens de rema
+            for token_id in etiquetas["rema"]:
+                if token_id in self.token_posiciones:
+                    pos = self.token_posiciones[token_id]
+                    self.text_area.tag_add("rema", pos["inicio"], pos["fin"])
+
+    def resaltar_oracion_actual(self):
+        """Resalta visualmente la oración actualmente seleccionada."""
+        # Primero limpiar cualquier resaltado anterior
+        self.text_area.tag_remove("oracion_actual", "1.0", tk.END)
+        
         if not self.oracion_actual:
-            messagebox.showwarning("Advertencia", 
-                                 "Primero debe seleccionar una oración.", 
-                                 parent=self.ventana)
             return
         
-        self.modo_seleccion = "tema"
-        self.seleccion_temporal.clear()
-        self.actualizar_panel_seleccion()
-        self.actualizar_colores_temporal()
-        self.estado_label.config(text="Seleccionando TEMA - Elija los tokens que constituyen el tema")
-
-    def iniciar_seleccion_rema(self):
-        """Inicia la selección de Rema."""
-        if not self.oracion_actual:
-            messagebox.showwarning("Advertencia", 
-                                 "Primero debe seleccionar una oración.", 
-                                 parent=self.ventana)
-            return
+        # Buscar dónde empieza y termina la oración en el texto
+        # Buscamos el encabezado de la oración
+        start_pattern = f"\nORACIÓN {self.oracion_actual.upper()}\n"
+        start_index = self.text_area.search(start_pattern, "1.0", tk.END)
         
-        self.modo_seleccion = "rema"
-        self.seleccion_temporal.clear()
-        self.actualizar_panel_seleccion()
-        self.actualizar_colores_temporal()
-        self.estado_label.config(text="Seleccionando REMA - Elija los tokens que constituyen el rema")
-
-    def finalizar_analisis(self):
-        """Finaliza el análisis de Tema/Rema para la oración actual."""
-        if not self.oracion_actual or not self.parrafo_actual:
-            messagebox.showwarning("Advertencia", 
-                                 "No hay oración seleccionada.", 
-                                 parent=self.ventana)
-            return
-        
-        if self.modo_seleccion == "tema" and not self.categoria_tema_var.get():
-            messagebox.showwarning("Advertencia", 
-                                 "Debe seleccionar una categoría para el Tema.", 
-                                 parent=self.ventana)
-            return
-        
-        if self.modo_seleccion == "rema" and not self.categoria_rema_var.get():
-            messagebox.showwarning("Advertencia", 
-                                 "Debe seleccionar una categoría para el Rema.", 
-                                 parent=self.ventana)
-            return
-        
-        if self.modo_seleccion == "tema":
-            # Guardar Tema
-            self.estructuras_tematicas[self.parrafo_actual][self.oracion_actual]['tema'] = {
-                'tokens': sorted(self.seleccion_temporal),
-                'categoria': self.categoria_tema_var.get()
-            }
-            self.estado_label.config(text=f"Tema definido para Oración {self.oracion_actual}")
+        if start_index:
+            # Encontrar dónde termina esta oración (buscar siguiente ORACIÓN)
+            end_search = self.text_area.index(f"{start_index}+1c")
+            end_index = self.text_area.search("\nORACIÓN ", end_search, tk.END)
             
-        elif self.modo_seleccion == "rema":
-            # Guardar Rema
-            self.estructuras_tematicas[self.parrafo_actual][self.oracion_actual]['rema'] = {
-                'tokens': sorted(self.seleccion_temporal),
-                'categoria': self.categoria_rema_var.get()
-            }
-            self.estado_label.config(text=f"Rema definido para Oración {self.oracion_actual}")
+            if not end_index:
+                # Si no hay más oraciones, ir al final
+                end_index = tk.END
+            else:
+                # Retroceder un poco para no incluir el encabezado de la siguiente
+                end_index = self.text_area.index(f"{end_index}-1c")
+            
+            # Aplicar el resaltado
+            self.text_area.tag_add("oracion_actual", start_index, end_index)
+
+    # =========================================================
+    # MANEJO DE EVENTOS DEL MOUSE (SELECCIÓN MÚLTIPLE)
+    # =========================================================
+    def on_text_click_start(self, event):
+        """Inicia la selección al hacer clic."""
+        # Limpiar selección anterior si no se está presionando Ctrl
+        if not event.state & 0x4:  # Si Ctrl no está presionado
+            self.limpiar_seleccion()
+        
+        self.drag_start = f"@{event.x},{event.y}"
+        # Procesar el clic inicial
+        self.procesar_seleccion_en_punto(self.drag_start)
+
+    def on_text_drag(self, event):
+        """Maneja el arrastre para selección múltiple."""
+        if not self.drag_start:
+            return
+            
+        # Limpiar selección temporal
+        self.text_area.tag_remove("seleccion_temp", "1.0", tk.END)
+        
+        # Obtener punto final del arrastre
+        drag_end = f"@{event.x},{event.y}"
+        
+        # Crear selección temporal durante el arrastre
+        if self.text_area.compare(self.drag_start, "<", drag_end):
+            self.text_area.tag_add("seleccion_temp", self.drag_start, drag_end)
+        else:
+            self.text_area.tag_add("seleccion_temp", drag_end, self.drag_start)
+        
+        # Configurar tag temporal
+        self.text_area.tag_config("seleccion_temp", background="#FFCCCC", foreground="black")
+
+    def on_text_click_end(self, event):
+        """Finaliza la selección al soltar el clic."""
+        if not self.drag_start:
+            return
+            
+        drag_end = f"@{event.x},{event.y}"
+        
+        # Obtener todos los tokens en el rango seleccionado
+        start_index = self.drag_start
+        end_index = drag_end
+        
+        # Asegurarse de que start_index < end_index
+        if self.text_area.compare(start_index, ">", end_index):
+            start_index, end_index = end_index, start_index
+        
+        # Buscar tokens en el texto seleccionado
+        tokens_en_rango = []
+        
+        # Recorrer todas las posiciones de tokens
+        for token_id, pos in self.token_posiciones.items():
+            # Verificar si el token está dentro del rango seleccionado
+            if (self.text_area.compare(pos["inicio"], ">=", start_index) and
+                self.text_area.compare(pos["inicio"], "<=", end_index)):
+                tokens_en_rango.append(token_id)
+        
+        # Agregar tokens al conjunto de selección
+        for token_id in tokens_en_rango:
+            self.tokens_seleccionados.add(token_id)
+            # Resaltar token
+            pos = self.token_posiciones[token_id]
+            self.text_area.tag_add("seleccionado", pos["inicio"], pos["fin"])
         
         # Limpiar selección temporal
-        self.modo_seleccion = None
-        self.seleccion_temporal.clear()
+        self.text_area.tag_remove("seleccion_temp", "1.0", tk.END)
         
-        self.actualizar_colores()
-        self.actualizar_info_panel()
-        self.actualizar_panel_seleccion()
+        # Actualizar información de selección
+        self.actualizar_info_seleccion()
+        
+        self.drag_start = None
 
-    def seleccionar_token(self, token_id, parrafo_id, oracion_id):
-        """Maneja la selección de un token."""
-        if parrafo_id != self.parrafo_actual or oracion_id != self.oracion_actual:
-            messagebox.showwarning("Advertencia", 
-                                 "Solo puede seleccionar tokens de la oración actual.", 
-                                 parent=self.ventana)
-            return
-        
-        token_full_id = f"{parrafo_id}_{oracion_id}_{token_id}"
-        
-        if self.modo_seleccion in ['tema', 'rema']:
-            if token_full_id in self.seleccion_temporal:
-                # Deseleccionar
-                self.seleccion_temporal.remove(token_full_id)
-            else:
-                # Seleccionar
-                self.seleccion_temporal.add(token_full_id)
-            
-            self.actualizar_colores_temporal()
-            self.actualizar_panel_seleccion()
+    def on_text_ctrl_click(self, event):
+        """Añade o quita tokens individuales con Ctrl+clic."""
+        index = f"@{event.x},{event.y}"
+        self.procesar_seleccion_en_punto(index)
 
-    def actualizar_panel_seleccion(self):
-        """Actualiza el panel de análisis actual."""
-        self.seleccion_text.configure(state="normal")
-        self.seleccion_text.delete("1.0", tk.END)
+    def on_text_right_click(self, event):
+        """Menú contextual para selección rápida."""
+        # Crear menú emergente
+        menu = tk.Menu(self.root, tearoff=0)
+        menu.add_command(label="Seleccionar toda la oración actual", 
+                        command=self.seleccionar_toda_oracion_actual)
+        menu.add_command(label="Limpiar selección", 
+                        command=self.limpiar_seleccion)
+        menu.add_separator()
+        menu.add_command(label="Etiquetar como TEMA", 
+                        command=self.agregar_tema)
+        menu.add_command(label="Etiquetar como REMA", 
+                        command=self.agregar_rema)
         
-        if self.parrafo_actual and self.oracion_actual:
-            self.seleccion_text.insert(tk.END, f"Párrafo: {self.parrafo_actual}\n")
-            self.seleccion_text.insert(tk.END, f"Oración: {self.oracion_actual}\n\n")
-            
-            # Mostrar análisis actual de la oración
-            analisis = self.estructuras_tematicas[self.parrafo_actual][self.oracion_actual]
-            
-            if analisis['tema']['tokens']:
-                self.seleccion_text.insert(tk.END, "TEMA definido:\n", "tema_tag")
-                self.seleccion_text.insert(tk.END, f"Categoría: {analisis['tema']['categoria']}\n")
-                for token_id in analisis['tema']['tokens']:
-                    token_text = self.obtener_texto_token(token_id)
-                    self.seleccion_text.insert(tk.END, f"• {token_text}\n")
-                self.seleccion_text.insert(tk.END, "\n")
-            else:
-                self.seleccion_text.insert(tk.END, "TEMA: No definido\n\n")
-            
-            if analisis['rema']['tokens']:
-                self.seleccion_text.insert(tk.END, "REMA definido:\n", "rema_tag")
-                self.seleccion_text.insert(tk.END, f"Categoría: {analisis['rema']['categoria']}\n")
-                for token_id in analisis['rema']['tokens']:
-                    token_text = self.obtener_texto_token(token_id)
-                    self.seleccion_text.insert(tk.END, f"• {token_text}\n")
-            else:
-                self.seleccion_text.insert(tk.END, "REMA: No definido\n")
-            
-            # Mostrar selección temporal
-            if self.modo_seleccion and self.seleccion_temporal:
-                self.seleccion_text.insert(tk.END, f"\nSeleccionando {self.modo_seleccion.upper()}:\n")
-                for token_id in sorted(self.seleccion_temporal):
-                    token_text = self.obtener_texto_token(token_id)
-                    self.seleccion_text.insert(tk.END, f"• {token_text}\n")
-        
-        else:
-            self.seleccion_text.insert(tk.END, "Seleccione un párrafo y oración")
-        
-        # Configurar colores para Tema y Rema
-        self.seleccion_text.tag_configure("tema_tag", foreground="darkred")
-        self.seleccion_text.tag_configure("rema_tag", foreground="darkgreen")
-        self.seleccion_text.configure(state="disabled")
-
-    def obtener_texto_token(self, token_full_id):
-        """Obtiene el texto de un token dado su ID completo."""
+        # Mostrar menú en posición del clic
         try:
-            parrafo_id, oracion_id, token_id = token_full_id.split('_')
-            tokens = self.tokens_por_parrafo[parrafo_id][oracion_id]
-            token_info = next((t for t in tokens if t['id'] == token_id), None)
-            return token_info['form'] if token_info else "N/A"
-        except:
-            return "N/A"
+            menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            menu.grab_release()
 
-    def actualizar_colores(self):
-        """Actualiza los colores de los tokens según el análisis temático."""
-        self.text_widget.configure(state="normal")
+    def procesar_seleccion_en_punto(self, index):
+        """Procesa la selección en un punto específico."""
+        # Buscar token en el punto del clic
+        token_encontrado = None
+        for token_id, pos in self.token_posiciones.items():
+            if self.posicion_en_rango(index, pos["inicio"], pos["fin"]):
+                token_encontrado = token_id
+                break
         
-        # Resetear todos los colores
-        for parrafo_id in self.parrafos:
-            for oracion_id in self.oraciones_por_parrafo[parrafo_id]:
-                tokens = self.tokens_por_parrafo[parrafo_id][oracion_id]
-                for token_info in tokens:
-                    tag_name = f"token_{parrafo_id}_{oracion_id}_{token_info['id']}"
-                    self.text_widget.tag_configure(tag_name, background="white", foreground="black")
-        
-        # Colorear según el análisis
-        for parrafo_id, oraciones in self.estructuras_tematicas.items():
-            for oracion_id, analisis in oraciones.items():
-                # Colorear Tema
-                for token_id in analisis['tema']['tokens']:
-                    tag_name = f"token_{token_id}"
-                    self.text_widget.tag_configure(tag_name, background=self.colores['tema'], 
-                                                 foreground="black", relief="raised")
-                
-                # Colorear Rema
-                for token_id in analisis['rema']['tokens']:
-                    tag_name = f"token_{token_id}"
-                    self.text_widget.tag_configure(tag_name, background=self.colores['rema'], 
-                                                 foreground="black", relief="raised")
-        
-        self.text_widget.configure(state="disabled")
-
-    def actualizar_colores_temporal(self):
-        """Actualiza solo los colores de la selección temporal."""
-        if not self.modo_seleccion:
-            return
+        if token_encontrado:
+            # Alternar selección (agregar si no está, quitar si está)
+            if token_encontrado in self.tokens_seleccionados:
+                self.tokens_seleccionados.remove(token_encontrado)
+                # Quitar resaltado
+                pos = self.token_posiciones[token_encontrado]
+                self.text_area.tag_remove("seleccionado", pos["inicio"], pos["fin"])
+            else:
+                self.tokens_seleccionados.add(token_encontrado)
+                # Aplicar resaltado
+                pos = self.token_posiciones[token_encontrado]
+                self.text_area.tag_add("seleccionado", pos["inicio"], pos["fin"])
             
-        self.text_widget.configure(state="normal")
-        
-        # Resetear colores de selección temporal en la oración actual
-        if self.parrafo_actual and self.oracion_actual:
-            tokens = self.tokens_por_parrafo[self.parrafo_actual][self.oracion_actual]
-            for token_info in tokens:
-                tag_name = f"token_{self.parrafo_actual}_{self.oracion_actual}_{token_info['id']}"
-                # Solo resetear si no está en el análisis permanente
-                if not self.esta_token_en_analisis(tag_name):
-                    self.text_widget.tag_configure(tag_name, background="white", foreground="black")
-        
-        # Colorear selección temporal
-        if self.seleccion_temporal:
-            color = self.colores[self.modo_seleccion]
-            for token_id in self.seleccion_temporal:
-                tag_name = f"token_{token_id}"
-                self.text_widget.tag_configure(tag_name, background=color, foreground="black", 
-                                             relief="sunken")
-        
-        self.text_widget.configure(state="disabled")
+            # Actualizar información de selección
+            self.actualizar_info_seleccion()
 
-    def esta_token_en_analisis(self, tag_name):
-        """Verifica si un token ya está en el análisis permanente."""
-        for parrafo_id, oraciones in self.estructuras_tematicas.items():
-            for oracion_id, analisis in oraciones.items():
-                for token_id in analisis['tema']['tokens']:
-                    if tag_name == f"token_{token_id}":
-                        return True
-                for token_id in analisis['rema']['tokens']:
-                    if tag_name == f"token_{token_id}":
-                        return True
-        return False
-
-    def actualizar_info_panel(self):
-        """Actualiza el panel de información con la progresión temática."""
-        self.info_text.configure(state="normal")
-        self.info_text.delete("1.0", tk.END)
+    def seleccionar_toda_oracion_actual(self):
+        """Selecciona todos los tokens de la oración actual."""
+        if not self.oracion_actual:
+            return
         
-        if not any(any(analisis['tema']['tokens'] or analisis['rema']['tokens'] 
-                      for analisis in oraciones.values()) 
-                  for oraciones in self.estructuras_tematicas.values()):
-            self.info_text.insert(tk.END, "No hay análisis temático definido")
-        else:
-            for parrafo_id in self.parrafos:
-                if any(analisis['tema']['tokens'] or analisis['rema']['tokens'] 
-                      for analisis in self.estructuras_tematicas[parrafo_id].values()):
-                    
-                    self.info_text.insert(tk.END, f"PÁRRAFO {parrafo_id}:\n", "parrafo_info")
-                    
-                    for oracion_id in self.oraciones_por_parrafo[parrafo_id]:
-                        analisis = self.estructuras_tematicas[parrafo_id][oracion_id]
-                        
-                        if analisis['tema']['tokens'] or analisis['rema']['tokens']:
-                            self.info_text.insert(tk.END, f"  Oración {oracion_id}:\n")
-                            
-                            if analisis['tema']['tokens']:
-                                self.info_text.insert(tk.END, "    TEMA: ", "tema_info")
-                                tema_tokens = [self.obtener_texto_token(tid) for tid in analisis['tema']['tokens']]
-                                self.info_text.insert(tk.END, f"{' '.join(tema_tokens)}\n")
-                                if analisis['tema']['categoria']:
-                                    desc = self.categorias_tema.get(analisis['tema']['categoria'], "")
-                                    self.info_text.insert(tk.END, f"    [{analisis['tema']['categoria']}: {desc}]\n")
-                            
-                            if analisis['rema']['tokens']:
-                                self.info_text.insert(tk.END, "    REMA: ", "rema_info")
-                                rema_tokens = [self.obtener_texto_token(tid) for tid in analisis['rema']['tokens']]
-                                self.info_text.insert(tk.END, f"{' '.join(rema_tokens)}\n")
-                                if analisis['rema']['categoria']:
-                                    desc = self.categorias_rema.get(analisis['rema']['categoria'], "")
-                                    self.info_text.insert(tk.END, f"    [{analisis['rema']['categoria']}: {desc}]\n")
-                            
-                            self.info_text.insert(tk.END, "\n")
-                    
-                    self.info_text.insert(tk.END, "\n")
+        # Limpiar selección anterior
+        self.limpiar_seleccion()
         
-        # Configurar colores
-        self.info_text.tag_configure("parrafo_info", font=("Arial", 9, "bold"), foreground="darkblue")
-        self.info_text.tag_configure("tema_info", foreground="darkred")
-        self.info_text.tag_configure("rema_info", foreground="darkgreen")
-        self.info_text.configure(state="disabled")
+        # Seleccionar todos los tokens de la oración actual
+        for token_id, pos in self.token_posiciones.items():
+            if pos["oracion"] == self.oracion_actual:
+                self.tokens_seleccionados.add(token_id)
+                self.text_area.tag_add("seleccionado", pos["inicio"], pos["fin"])
+        
+        # Actualizar información
+        self.actualizar_info_seleccion()
 
     def limpiar_seleccion(self):
-        """Limpia la selección temporal."""
-        self.modo_seleccion = None
-        self.seleccion_temporal.clear()
-        self.actualizar_colores()
-        self.actualizar_panel_seleccion()
-        self.estado_label.config(text="Selección temporal limpiada")
+        """Limpia la selección visual actual."""
+        self.text_area.tag_remove("seleccionado", "1.0", tk.END)
+        self.text_area.tag_remove("seleccion_temp", "1.0", tk.END)
+        self.tokens_seleccionados.clear()
+        self.actualizar_info_seleccion()
 
-    def mostrar_progresion_tematica(self):
-        """Muestra un resumen de la progresión temática."""
-        mensaje = "PROGRESIÓN TEMÁTICA - TEMA Y REMA:\n\n"
-        
-        for parrafo_id in self.parrafos:
-            tiene_analisis = False
-            parrafo_msg = f"Párrafo {parrafo_id}:\n"
+    def actualizar_info_seleccion(self):
+        """Actualiza la información de tokens seleccionados."""
+        count = len(self.tokens_seleccionados)
+        if count == 0:
+            self.label_seleccion_info.config(text="0 tokens")
+        elif count == 1:
+            token_id = next(iter(self.tokens_seleccionados))
+            if token_id in self.token_info:
+                token = self.token_info[token_id]
+                self.label_seleccion_info.config(
+                    text=f"1 token: '{token['form']}' ({token_id})"
+                )
+        else:
+            # Mostrar primeros 3 tokens como ejemplo
+            sample_tokens = []
+            for i, token_id in enumerate(list(self.tokens_seleccionados)[:3]):
+                if token_id in self.token_info:
+                    sample_tokens.append(f"'{self.token_info[token_id]['form']}'")
             
-            for oracion_id in self.oraciones_por_parrafo[parrafo_id]:
-                analisis = self.estructuras_tematicas[parrafo_id][oracion_id]
-                
-                if analisis['tema']['tokens'] or analisis['rema']['tokens']:
-                    tiene_analisis = True
-                    oracion_msg = f"  Oración {oracion_id}:\n"
-                    
-                    if analisis['tema']['tokens']:
-                        tema_tokens = [self.obtener_texto_token(tid) for tid in analisis['tema']['tokens']]
-                        oracion_msg += f"    TEMA: {' '.join(tema_tokens)}\n"
-                        if analisis['tema']['categoria']:
-                            oracion_msg += f"    Categoría: {analisis['tema']['categoria']}\n"
-                    
-                    if analisis['rema']['tokens']:
-                        rema_tokens = [self.obtener_texto_token(tid) for tid in analisis['rema']['tokens']]
-                        oracion_msg += f"    REMA: {' '.join(rema_tokens)}\n"
-                        if analisis['rema']['categoria']:
-                            oracion_msg += f"    Categoría: {analisis['rema']['categoria']}\n"
-                    
-                    parrafo_msg += oracion_msg + "\n"
+            sample_text = ", ".join(sample_tokens)
+            if count > 3:
+                sample_text += f"... (+{count-3} más)"
             
-            if tiene_analisis:
-                mensaje += parrafo_msg + "\n"
-        
-        if mensaje == "PROGRESIÓN TEMÁTICA - TEMA Y REMA:\n\n":
-            mensaje += "No hay análisis temático definido"
-        
-        messagebox.showinfo("Progresión Temática - Tema y Rema", mensaje, parent=self.ventana)
-
-    def guardar_json(self):
-        """Guarda el análisis temático en formato JSON."""
-        try:
-            # Verificar que hay análisis para guardar
-            tiene_analisis = False
-            for parrafo_id, oraciones in self.estructuras_tematicas.items():
-                for oracion_id, analisis in oraciones.items():
-                    if analisis['tema']['tokens'] or analisis['rema']['tokens']:
-                        tiene_analisis = True
-                        break
-                if tiene_analisis:
-                    break
-            
-            if not tiene_analisis:
-                messagebox.showwarning("Advertencia", "No hay análisis temático para guardar.", parent=self.ventana)
-                return
-
-            # Construir la estructura de datos
-            datos_analisis = {}
-            
-            for parrafo_id, oraciones in self.estructuras_tematicas.items():
-                datos_analisis[parrafo_id] = {}
-                
-                for oracion_id, analisis in oraciones.items():
-                    if analisis['tema']['tokens'] or analisis['rema']['tokens']:
-                        datos_analisis[parrafo_id][oracion_id] = {}
-                        
-                        if analisis['tema']['tokens']:
-                            datos_analisis[parrafo_id][oracion_id]['tema'] = {
-                                'tokens': self.formatear_tokens_para_json(analisis['tema']['tokens']),
-                                'categoria': analisis['tema']['categoria'],
-                                'descripcion': self.categorias_tema.get(analisis['tema']['categoria'], "")
-                            }
-                        
-                        if analisis['rema']['tokens']:
-                            datos_analisis[parrafo_id][oracion_id]['rema'] = {
-                                'tokens': self.formatear_tokens_para_json(analisis['rema']['tokens']),
-                                'categoria': analisis['rema']['categoria'],
-                                'descripcion': self.categorias_rema.get(analisis['rema']['categoria'], "")
-                            }
-
-            # Generar nombre de archivo
-            nombre_base = os.path.basename(self.ruta_xml).replace(".xml", "")
-            nombre_archivo = f"{nombre_base}_tema_rema.json"
-
-            # Crear estructura completa del JSON
-            datos_completos = {
-                "metadata": {
-                    "archivo_origen": os.path.basename(self.ruta_xml),
-                    "tipo_analisis": "tema_rema",
-                    "categorias_tema": self.categorias_tema,
-                    "categorias_rema": self.categorias_rema
-                },
-                "analisis_tematico": datos_analisis
-            }
-
-            # Guardar archivo
-            with open(nombre_archivo, "w", encoding="utf-8") as f:
-                json.dump(datos_completos, f, ensure_ascii=False, indent=2)
-
-            # Contar análisis realizados
-            total_oraciones = sum(len(oraciones) for oraciones in datos_analisis.values())
-            resumen = (
-                f"Análisis de Tema y Rema guardado correctamente.\n"
-                f"Archivo: {nombre_archivo}\n"
-                f"Párrafos analizados: {len(datos_analisis)}\n"
-                f"Oraciones analizadas: {total_oraciones}"
+            self.label_seleccion_info.config(
+                text=f"{count} tokens: {sample_text}"
             )
-            messagebox.showinfo("Guardado exitoso", resumen, parent=self.ventana)
 
-        except Exception as e:
-            messagebox.showerror("Error", f"No se pudo guardar el análisis: {str(e)}", parent=self.ventana)
+    def posicion_en_rango(self, pos, inicio, fin):
+        """Verifica si una posición está dentro de un rango."""
+        return self.text_area.compare(pos, ">=", inicio) and self.text_area.compare(pos, "<=", fin)
 
-    def formatear_tokens_para_json(self, tokens):
-        """Convierte una lista de tokens a formato JSON."""
-        tokens_formateados = []
-        for token_id in tokens:
-            parrafo_id, oracion_id, token_num = token_id.split('_')
-            tokens_list = self.tokens_por_parrafo[parrafo_id][oracion_id]
-            token_info = next((t for t in tokens_list if t["id"] == token_num), None)
-            if token_info:
-                tokens_formateados.append({
-                    "parrafo": parrafo_id,
-                    "oracion": oracion_id,
-                    "token_id": token_num,
-                    "texto": token_info["form"]
-                })
-        return tokens_formateados
+    # =========================================================
+    # FUNCIONES DE GESTIÓN DE ORACIONES (CON BOTONES)
+    # =========================================================
+    def seleccionar_oracion(self, oracion_id):
+        """Selecciona una oración usando botones."""
+        self.oracion_actual = oracion_id
+        
+        # Actualizar apariencia de botones
+        for oid, btn in self.botones_oraciones.items():
+            if oid == oracion_id:
+                btn.config(bg=config.COLOR_BOTON_ACTIVO, fg="white")
+            else:
+                btn.config(bg=config.COLOR_BOTON_AZUL, fg="white")
+        
+        # Actualizar etiqueta de progresión
+        if self.oracion_actual in self.etiquetado_oraciones:
+            etiqueta_actual = self.etiquetado_oraciones[self.oracion_actual].get("etiqueta", "")
+            if etiqueta_actual:
+                self.var_etiqueta_progresion.set(etiqueta_actual)
+                # Resaltar botón seleccionado
+                for valor, btn in self.botones_etiquetas.items():
+                    if valor == etiqueta_actual:
+                        btn.config(bg=config.COLOR_BOTON_ACTIVO, fg="white")
+                    else:
+                        btn.config(bg=config.COLOR_FONDO, fg="black")
+            else:
+                self.var_etiqueta_progresion.set("")
+                # Deseleccionar todos los botones de etiquetas
+                for btn in self.botones_etiquetas.values():
+                    btn.config(bg=config.COLOR_FONDO, fg="black")
+        
+        self.actualizar_vista_etiquetado()
+        self.limpiar_seleccion()
+        self.resaltar_oracion_actual()
 
-    def on_text_click(self, event):
-        """Maneja el clic en el texto."""
-        pass
-
-
-class VentanaPrincipal:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("SIMULTEX - Análisis de Tema y Rema")
-        self.root.geometry("300x200")
-
-        # Botón para abrir análisis de Tema y Rema
-        btn = ttk.Button(
-            self.root,
-            text="Análisis Tema-Rema",
-            command=self.analisis_tema_rema
+    def nueva_oracion(self):
+        """Crea una nueva oración para etiquetado."""
+        # Determinar el siguiente ID de oración
+        oraciones_existentes = list(self.tokens_por_oracion.keys())
+        if oraciones_existentes:
+            # Encontrar el máximo número de oración existente
+            numeros = []
+            for oracion_id in oraciones_existentes:
+                if oracion_id.startswith("s"):
+                    try:
+                        numero = int(oracion_id[1:])
+                        numeros.append(numero)
+                    except:
+                        pass
+            
+            if numeros:
+                nuevo_numero = max(numeros) + 1
+            else:
+                nuevo_numero = len(oraciones_existentes) + 1
+        else:
+            nuevo_numero = 1
+        
+        nuevo_id = f"s{nuevo_numero}"
+        
+        # Crear nueva entrada en las estructuras de datos
+        self.tokens_por_oracion[nuevo_id] = []
+        self.etiquetado_oraciones[nuevo_id] = {
+            "tema": [], 
+            "rema": [],
+            "etiqueta": ""
+        }
+        
+        # Crear nuevo botón
+        btn = tk.Button(
+            self.frame_botones_interno,
+            text=f"Oración {nuevo_numero}",
+            bg=config.COLOR_BOTON_AZUL,
+            fg="white",
+            font=("Arial", 10),
+            width=12,
+            command=lambda: self.seleccionar_oracion(nuevo_id)
         )
-        btn.pack(padx=20, pady=20)
+        btn.pack(side="left", padx=2, pady=2)
+        self.botones_oraciones[nuevo_id] = btn
+        
+        # Seleccionar la nueva oración
+        self.seleccionar_oracion(nuevo_id)
+        
+        messagebox.showinfo("Nueva Oración", 
+                          f"Se ha creado la oración {nuevo_id}.\n\n"
+                          f"Ahora puedes seleccionar tokens de cualquier parte del texto "
+                          f"y etiquetarlos para esta oración.")
 
-    def analisis_tema_rema(self):
-        ruta_xml = "prueba.xml"
-        tipo_texto = "ejemplo"
-
-        if not os.path.exists(ruta_xml):
-            messagebox.showerror("Error", f"No se encontró el archivo {ruta_xml}")
+    def aplicar_etiqueta_desde_boton(self):
+        """Aplica la etiqueta de progresión seleccionada desde botón."""
+        if not self.oracion_actual:
+            messagebox.showwarning("Advertencia", "Por favor, seleccione una oración.")
             return
+        
+        etiqueta_valor = self.var_etiqueta_progresion.get()
+        if not etiqueta_valor:
+            # Si está vacío, eliminar la etiqueta
+            self.etiquetado_oraciones[self.oracion_actual]["etiqueta"] = ""
+        else:
+            # Aplicar etiqueta
+            self.etiquetado_oraciones[self.oracion_actual]["etiqueta"] = etiqueta_valor
+        
+        self.actualizar_vista_etiquetado()
 
-        ventana = VentanaEtiquetadoTemaRema(
-            self.root,
-            ruta_xml,
-            tipo_texto
+    def limpiar_etiqueta(self):
+        """Limpia la etiqueta de progresión actual."""
+        self.var_etiqueta_progresion.set("")
+        if self.oracion_actual:
+            self.etiquetado_oraciones[self.oracion_actual]["etiqueta"] = ""
+            self.actualizar_vista_etiquetado()
+        
+        # Deseleccionar todos los botones de etiquetas
+        for btn in self.botones_etiquetas.values():
+            btn.config(bg=config.COLOR_FONDO, fg="black")
+
+    # =========================================================
+    # FUNCIONES DE ETIQUETADO (SIN FILTRO POR ORACIÓN)
+    # =========================================================
+    def agregar_tema(self):
+        """Agrega los tokens seleccionados a la lista de tema de la oración actual."""
+        self.agregar_tokens_seleccionados("tema")
+
+    def agregar_rema(self):
+        """Agrega los tokens seleccionados a la lista de rema de la oración actual."""
+        self.agregar_tokens_seleccionados("rema")
+
+    def agregar_tokens_seleccionados(self, tipo):
+        """Agrega los tokens seleccionados como tema o rema de la oración actual."""
+        if not self.tokens_seleccionados:
+            messagebox.showwarning("Advertencia", "Por favor, seleccione al menos un token.")
+            return
+        
+        if not self.oracion_actual:
+            messagebox.showwarning("Advertencia", "Por favor, seleccione una oración.")
+            return
+        
+        tokens_agregados = 0
+        tokens_movidos = 0
+        
+        otro_tipo = "rema" if tipo == "tema" else "tema"
+        
+        for token_id in list(self.tokens_seleccionados):
+            # IMPORTANTE: Ya no verificamos la oración del token
+            
+            # Verificar si el token ya está etiquetado en OTRA oración
+            for oracion_id, etiquetas in self.etiquetado_oraciones.items():
+                if oracion_id != self.oracion_actual:
+                    # Remover de tema de otras oraciones
+                    if token_id in etiquetas["tema"]:
+                        etiquetas["tema"].remove(token_id)
+                    
+                    # Remover de rema de otras oraciones
+                    if token_id in etiquetas["rema"]:
+                        etiquetas["rema"].remove(token_id)
+            
+            # Verificar que no esté ya etiquetado en el otro grupo de ESTA oración
+            if token_id in self.etiquetado_oraciones[self.oracion_actual][otro_tipo]:
+                self.etiquetado_oraciones[self.oracion_actual][otro_tipo].remove(token_id)
+                tokens_movidos += 1
+            
+            # Agregar si no está ya en la lista
+            if token_id not in self.etiquetado_oraciones[self.oracion_actual][tipo]:
+                self.etiquetado_oraciones[self.oracion_actual][tipo].append(token_id)
+                tokens_agregados += 1
+        
+        # Actualizar interfaces
+        self.actualizar_vista_etiquetado()
+        self.resaltar_etiquetado_en_texto()
+        
+        # Limpiar selección después de etiquetar
+        self.limpiar_seleccion()
+        
+        # Mostrar mensaje informativo
+        info_text = f"{tokens_agregados} token(s) etiquetados como {tipo.upper()}"
+        if tokens_movidos > 0:
+            info_text += f" ({tokens_movidos} movidos de {otro_tipo.upper()})"
+        
+        self.label_seleccion_info.config(text=info_text, fg="#006600")
+
+
+    def limpiar_oracion_actual(self):
+        """Limpia todo el etiquetado de la oración actual."""
+        if not self.oracion_actual:
+            return
+        
+        respuesta = messagebox.askyesno(
+            "Confirmar",
+            f"¿Está seguro de que desea limpiar todo el etiquetado de la oración {self.oracion_actual}?", parent = self.root
         )
-        ventana.ventana.grab_set()
+        
+        if respuesta:
+            self.etiquetado_oraciones[self.oracion_actual] = {
+                "tema": [], 
+                "rema": [],
+                "etiqueta": ""
+            }
+            self.var_etiqueta_progresion.set("")
+            self.actualizar_vista_etiquetado()
+            # Limpiar resaltado en texto para tokens de esta oración
+            for token_id in self.tokens_por_oracion.get(self.oracion_actual, []):
+                token_id_val = token_id["id"]
+                if token_id_val in self.token_posiciones:
+                    pos = self.token_posiciones[token_id_val]
+                    self.text_area.tag_remove("tema", pos["inicio"], pos["fin"])
+                    self.text_area.tag_remove("rema", pos["inicio"], pos["fin"])
+            
+            # Deseleccionar botones de etiquetas
+            for btn in self.botones_etiquetas.values():
+                btn.config(bg=config.COLOR_FONDO, fg="black")
+            
+            self.limpiar_seleccion()
 
+    def actualizar_vista_etiquetado(self):
+        """Actualiza el área que muestra el etiquetado actual."""
+        self.etiquetado_area.config(state="normal")
+        self.etiquetado_area.delete("1.0", tk.END)
+        
+        if not self.oracion_actual:
+            return
+        
+        etiquetas = self.etiquetado_oraciones[self.oracion_actual]
+        
+        # Mostrar etiqueta de progresión
+        if etiquetas["etiqueta"]:
+            nombre_etiqueta = config.ETIQUETAS_PROGRESION.get(
+                etiquetas["etiqueta"], 
+                etiquetas["etiqueta"]
+            )
+            self.etiquetado_area.insert(tk.END, f"ETIQUETA: {nombre_etiqueta}\n\n", "titulo")
+        
+        # Mostrar tokens de tema
+        self.etiquetado_area.insert(tk.END, "TEMA:\n", "subtitulo")
+        if etiquetas["tema"]:
+            tokens_tema = []
+            for token_id in etiquetas["tema"]:
+                if token_id in self.token_info:
+                    token = self.token_info[token_id]
+                    # Mostrar de qué oración original viene el token
+                    oracion_original = token['oracion']
+                    tokens_tema.append(f"  • {token_id}: '{token['form']}' (oración original: {oracion_original})")
+            self.etiquetado_area.insert(tk.END, "\n".join(tokens_tema) + "\n\n")
+        else:
+            self.etiquetado_area.insert(tk.END, "  No hay tokens etiquetados como tema.\n\n")
+        
+        # Mostrar tokens de rema
+        self.etiquetado_area.insert(tk.END, "REMA:\n", "subtitulo")
+        if etiquetas["rema"]:
+            tokens_rema = []
+            for token_id in etiquetas["rema"]:
+                if token_id in self.token_info:
+                    token = self.token_info[token_id]
+                    # Mostrar de qué oración original viene el token
+                    oracion_original = token['oracion']
+                    tokens_rema.append(f"  • {token_id}: '{token['form']}' (oración original: {oracion_original})")
+            self.etiquetado_area.insert(tk.END, "\n".join(tokens_rema))
+        else:
+            self.etiquetado_area.insert(tk.END, "  No hay tokens etiquetados como rema.")
+        
+        self.etiquetado_area.config(state="disabled")
+        # Configurar tags para títulos
+        self.etiquetado_area.tag_config("titulo", font=("Arial", 11, "bold"), foreground=config.COLOR_TITULO)
+        self.etiquetado_area.tag_config("subtitulo", font=("Arial", 11, "bold"))
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = VentanaPrincipal(root)
-    root.mainloop()
+    # =========================================================
+    # GUARDAR EN JSON - VERSIÓN SIMPLIFICADA
+    # =========================================================
+    def guardar_en_json(self):
+        """
+        Guarda el etiquetado actual DESDE LA MEMORIA al archivo JSON,
+        usando la nueva estructura {tema: [], rema: [], etiqueta: ""}
+        """
+        try:
+            # ==============================================
+            # 1. OBTENER DATOS ACTUALES DESDE LA MEMORIA
+            # ==============================================
+            etiquetado_filtrado = {}
+            oraciones_con_etiquetado = 0
+            
+            # Filtrar solo oraciones que tienen algún etiquetado
+            for oracion_id, etiquetas in self.etiquetado_oraciones.items():
+                # Verificar si tiene etiquetado (tema, rema o etiqueta)
+                tiene_etiquetado = (
+                    len(etiquetas["tema"]) > 0 or 
+                    len(etiquetas["rema"]) > 0 or 
+                    etiquetas["etiqueta"] != ""
+                )
+                
+                if tiene_etiquetado:
+                    oraciones_con_etiquetado += 1
+                    etiquetado_filtrado[oracion_id] = {
+                        "tema": etiquetas["tema"].copy(),  # Usar copia para seguridad
+                        "rema": etiquetas["rema"].copy(),
+                        "etiqueta": etiquetas["etiqueta"]
+                    }
+            
+            # Si no hay nada etiquetado, preguntar si quiere guardar vacío
+            if oraciones_con_etiquetado == 0:
+                respuesta = messagebox.askyesno(
+                    "Sin etiquetado",
+                    "No hay ninguna etiqueta de tema/rema asignada.\n\n"
+                    "¿Desea guardar una estructura vacía?"
+                )
+                if not respuesta:
+                    return
+            
+            # ==============================================
+            # 2. PREPARAR LA ESTRUCTURA JSON COMPLETA
+            # ==============================================
+            # Primero, cargar los datos originales del archivo
+            try:
+                with open(self.ruta_json, "r", encoding="utf-8") as f:
+                    datos_completos = json.load(f)
+            except FileNotFoundError:
+                # Si el archivo no existe, crear estructura nueva
+                datos_completos = {"document": {}}
+            except json.JSONDecodeError as e:
+                messagebox.showerror(
+                    "Error en archivo JSON", 
+                    f"El archivo {self.ruta_json} tiene formato JSON inválido:\n{e}",
+                    parent=self.root
+                )
+                return
+            
+            # Asegurar estructura básica
+            if "document" not in datos_completos:
+                datos_completos["document"] = {}
+            
+            # Crear o actualizar la sección Etiquetado
+            if "Etiquetado" not in datos_completos["document"]:
+                datos_completos["document"]["Etiquetado"] = {}
+            
+            # Actualizar SOLO la sección tema_rema, manteniendo otras secciones de Etiquetado
+            datos_completos["document"]["Etiquetado"]["tema_rema"] = etiquetado_filtrado
+            
+            # ==============================================
+            # 3. GUARDAR EN DISCO
+            # ==============================================
+            try:
+                # Convertir a JSON formateado
+                json_final = json.dumps(datos_completos, ensure_ascii=False, indent=2)
+                
+                # Hacer backup del archivo original si existe
+                import os
+                import shutil
+                if os.path.exists(self.ruta_json):
+                    backup_path = self.ruta_json + ".backup"
+                    shutil.copy2(self.ruta_json, backup_path)
+                    print(f"Backup creado: {backup_path}")
+                
+                # Guardar el archivo
+                with open(self.ruta_json, "w", encoding="utf-8") as f:
+                    f.write(json_final)
+                    
+            except PermissionError:
+                messagebox.showerror(
+                    "Error de permisos",
+                    f"No tiene permisos para escribir en:\n{self.ruta_json}\n\n"
+                    f"Por favor, cierre el archivo si está abierto en otro programa.",
+                    parent=self.root
+                )
+                return
+            except Exception as e:
+                messagebox.showerror(
+                    "Error de escritura",
+                    f"No se pudo guardar el archivo:\n{e}",
+                    parent=self.root
+                )
+                return
+            
+            # ==============================================
+            # 4. MOSTRAR CONFIRMACIÓN
+            # ==============================================
+            # Calcular estadísticas para el mensaje
+            total_tokens_tema = sum(len(v["tema"]) for v in etiquetado_filtrado.values())
+            total_tokens_rema = sum(len(v["rema"]) for v in etiquetado_filtrado.values())
+            oraciones_con_progresion = sum(
+                1 for v in etiquetado_filtrado.values() if v["etiqueta"]
+            )
+            
+            # Preparar mensaje de confirmación
+            mensaje = f"✅ ETIQUETADO GUARDADO EXITOSAMENTE\n\n"
+            mensaje += f"📁 Archivo: {self.ruta_json}\n"
+            mensaje += f"📊 Estadísticas:\n"
+            mensaje += f"   • Oraciones etiquetadas: {oraciones_con_etiquetado}\n"
+            mensaje += f"   • Tokens TEMA: {total_tokens_tema}\n"
+            mensaje += f"   • Tokens REMA: {total_tokens_rema}\n"
+            mensaje += f"   • Oraciones con progresión: {oraciones_con_progresion}\n"
+            
+            # Listar oraciones guardadas (máximo 5)
+            if oraciones_con_etiquetado > 0:
+                mensaje += f"\n📋 Oraciones guardadas:\n"
+                for i, oracion_id in enumerate(list(etiquetado_filtrado.keys())[:5]):
+                    etiqueta = etiquetado_filtrado[oracion_id]["etiqueta"]
+                    if not etiqueta:
+                        etiqueta = "Sin etiqueta"
+                    mensaje += f"   {oracion_id}: {etiqueta}\n"
+                
+                if oraciones_con_etiquetado > 5:
+                    mensaje += f"   ... y {oraciones_con_etiquetado - 5} más\n"
+            
+            # Mostrar advertencia si hay oración actual sin guardar
+            if self.oracion_actual and self.oracion_actual not in etiquetado_filtrado:
+                mensaje += f"\n⚠️  La oración actual ({self.oracion_actual}) no fue guardada "
+                mensaje += f"porque no tiene etiquetado."
+            
+            messagebox.showinfo("Guardado Exitoso", mensaje, parent=self.root)
+            
+            # Feedback visual en la interfaz
+            self.label_seleccion_info.config(
+                text=f"✓ Guardado: {oraciones_con_etiquetado} oraciones",
+                fg="#006600"
+            )
+            
+            # Temporizador para limpiar el mensaje después de 3 segundos
+            self.root.after(3000, lambda: self.actualizar_info_seleccion())
+            
+        except Exception as e:
+            messagebox.showerror(
+                "Error Inesperado", 
+                f"Ocurrió un error inesperado:\n\n{str(e)}",
+                parent=self.root
+            )
